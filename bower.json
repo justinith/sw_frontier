@@ -1,0 +1,40 @@
+{
+  "name": "tv-1.0-frontent",
+  "version": "1.0.0",
+  "authors": [
+    "alexander sage <sage.alexander@trialomics.com>"
+  ],
+  "description": "Frontend application for the Trialomics Viewer 1.0 backend.",
+  "main": "src/index.html",
+  "keywords": [
+    "AngularJs",
+    "Trialomics",
+    "Bootstrap",
+    "Trialomics Viewer 1.0"
+  ],
+  "license": "MIT",
+  "homepage": "src/index.html",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.8",
+    "angular-bootstrap": "~0.14.3",
+    "angular-route": "~1.4.7",
+    "angular-sanitize": "~1.4.7",
+    "ui-router-extras": "~0.1.0",
+    "angular-ui-router": "ui-router#~0.2.15",
+    "bootstrap": "~3.3.5",
+    "font-awesome": "~4.4.0",
+    "jquery": "~2.1.4",
+    "jquery-jsonview": "https://github.com/yesmeck/jquery-jsonview.git#~1.2.3",
+    "ng-table": "~0.8.3",
+    "moment": "~2.10.6",
+    "underscore": "~1.8.3"
+  },
+  "devDependencies": {}
+}

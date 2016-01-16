@@ -1,0 +1,28 @@
+<style>
+    .home{
+        display: flex;
+
+    }
+</style>
+<div class="home page-container">
+
+
+    <div class="login panel">
+        <form class="panel-default" name="LoginForm" ng-submit="LoginForm.$valid && HomeCtrl.login()">
+            <div>
+            <label>Username</label>
+                <br/>
+                <input type="text" ng-model="HomeCtrl.login.username" name="username" placeholder="username"/>
+            </div>
+            <div>
+            <label>Password</label>
+                <br/>
+                <input type="password" ng-model="HomeCtrl.login.username" name="password"/>
+            </div>
+        </form>
+    </div>
+
+
+
+
+</div>

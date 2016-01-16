@@ -1,0 +1,15 @@
+# Webstorm
+.idea
+
+# NPM and Bower
+node_modules
+src/bower_components
+
+# Development
+dev
+
+# .map files
+**/*.map
+
+# Alex's Dev stuff
+/dev-tools
