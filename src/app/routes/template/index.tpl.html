@@ -21,8 +21,8 @@
                     </a>
                 </li>
                 <li class="active" ui-sref-active="active">
-                    <a ui-sref="app.selectSkill">
-                        Select Skill
+                    <a ui-sref="app.explore">
+                        Explore
                     </a>
                 </li>
             </ul>
@@ -32,25 +32,16 @@
                     <a ui-sref="app.index">login</a>
                 </li>
                 <li ui-sref-active="active">
-                    <a ui-sref="logout">Logout</a>
+                    <a ui-sref="app.logout">Logout</a>
                 </li>
-                <!--<li class="dropdown">-->
-                    <!--<a href="#" class="dropdown-toggle fa fa-user" data-toggle="dropdown" role="button"-->
-                       <!--aria-haspopup="true" aria-expanded="false"> <span class="caret"></span></a>-->
-                    <!--<ul class="dropdown-menu">-->
-                        <!--<li><a href="#">Action</a></li>-->
-                        <!--<li><a href="#">Another action</a></li>-->
-                        <!--<li><a href="#">Something else here</a></li>-->
-                        <!--<li role="separator" class="divider"></li>-->
-                        <!--<li><a href="#">Separated link</a></li>-->
-                    <!--</ul>-->
-                <!--</li>-->
             </ul>
         </div>
     </div>
 </nav>
 
 <div class="container-fluid">
-    <div ui-view></div>
+    <div class="row">
+    <div ui-view class="col-sm-8 col-sm-offset-2"></div>
+    </div>
 
 </div>

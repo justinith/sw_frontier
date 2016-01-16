@@ -1,0 +1,14 @@
+<div class="dash page-container"
+ng-init="DashCtrl.url = 'https://www.youtube.com/embed/H1I4ObpzszE'">
+    <h4>Pick what best interests you?</h4>
+    <div class="row">
+        <div class="col-sm-3" ng-repeat="category in DashCtrl.list">
+            <button class="btn btn-primary" ng-click="DashCtrl.selectClass(category)">
+                {{category.attributes.name}}
+            </button>
+        </div>
+    </div>
+
+
+    <p>More to come...</p>
+</div>

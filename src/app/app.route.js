@@ -31,15 +31,21 @@
                 controller: 'HomeCtrl as HomeCtrl'
             //
             })
+            .state('app.dash', {
+                url: 'dash',
+                templateUrl: base.routes + 'dash/dash.tpl.html',
+                controller: 'DashCtrl as DashCtrl'
+            })
             // logout
             .state('app.logout', {
                 url: 'logout',
-                controller: function($state, CurrentUserStore){
-                    CurrentUserStore.logout().then(function(){
-                        $state.go('app');
-                    }, function(){
-                        alert('Error logging out.');
-                    });
+                controller: function($state){
+                    Parse.User.logOut().then(function(res){
+                        console.log('user logout', res);
+                    }, function(err){
+                        console.log('user logout error', err);
+                    })
+
                 }
             })
 
