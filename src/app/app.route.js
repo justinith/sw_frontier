@@ -58,6 +58,7 @@
             // View Class
             .state('app.class', {
                 url: 'class?id',
+                templateUrl: base.routes + 'class/class.tpl.html',
                 controller: 'ClassCtrl as ClassCtrl'
             })
             .state('app.signup', {
