@@ -13,3 +13,8 @@ dev
 
 # Alex's Dev stuff
 /dev-tools
+
+
+.DS_Store
+*/.DS_Store
+**/.DS_Store
