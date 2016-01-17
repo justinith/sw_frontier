@@ -29,7 +29,6 @@
                 url: 'home',
                 templateUrl: base.routes + 'home/home.tpl.html',
                 controller: 'HomeCtrl as HomeCtrl'
-            //
             })
             .state('app.explorer', {
                 url: 'explorer',
@@ -60,9 +59,6 @@
                 url: 'class/:id',
                 templateUrl: base.routes + 'class/class.tpl.html',
                 controller: 'ClassCtrl as ClassCtrl'
-            })
-            .state('app.signup', {
-
             })
             // login
             // signup

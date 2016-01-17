@@ -9,10 +9,6 @@
     function ExplorerCtrl($scope, $state, Api) {
         var vm = this;
         var currentUser = Parse.User.current ();
-
-        //console.log(currentUser.fetch());
-        //console.log({a:Parse.User});
-        //console.log({a:currentUser});
         vm.list = [];
         vm.description = 'Welcome to Frontier';
 
@@ -37,18 +33,22 @@
 
         function selectClass(category) {
             Api.getClassByCategoryId (category.id)
-                .then (
-                    viewClass,
+                .then (function(res){
+                    console.log(res);
+                    console.log('Hello1');
+                        viewClass(category);
+                    },
                     function (err) {
                         createClass (category)
                             .then (function () {
-                                viewClass (category.attribute);
+                                console.log('class hello');
+                                viewClass (category);
                             });
                     });
         }
 
         function viewClass(category) {
-            $state.go ('app.class', {tree: category.id});
+            $state.go ('app.class', {id: category.id});
         }
 
         function createClass(category) {

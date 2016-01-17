@@ -60,6 +60,9 @@
                 .equalTo ('categoryId', categoryId)
                 .first ()
                 .then (function (res) {
+                    if(!res){
+                        return $q.reject(res);
+                    }
                     return generateSuccessResponse (res);
                 }, generateErrorResponse);
         }
