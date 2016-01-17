@@ -1,10 +1,48 @@
 <style type="text/css">
+    .myNav {
+        color: rgb(84, 214, 207);
+    }
+
+    nav {
+        background-color: white;
+        height: auto;
+        min-height: 0px;
+    }
+
     .navbar-default .navbar-brand {
-        color: rgb(242, 109, 125);
+        color: rgb(84, 214, 207);
+    }
+
+    .navbar-default .navbar-nav>.active>a {
+        color: rgb(84, 214, 207);
+    }
+
+    .navbar-default .navbar-nav>li>a {
+        color: rgb(84, 214, 207);
+    }
+
+    .blueLogo {
+        height: 50px;
+        margin-left: 20px;
+    }
+
+    @media (min-width: 768px) {
+        .navbar {
+            border-radius: 0px;
+        }
+
+        .navbar-nav>li>a {
+            padding-top: 27px;
+            font-size: 13pt;
+        }
+    }
+
+    .navbar-brand {
+        height: auto;
     }
 </style>
 
-<nav class="navbar navbar-default hidden">
+<nav class="navbar navbar-default secretHidden myNav">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -15,12 +53,14 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Frontier</a>
+            <a class="navbar-brand" href="#">
+                <img class="blueLogo" src="assets/images/logo_turqoise.png">
+            </a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
+           <!--  <ul class="nav navbar-nav">
                 <li class="active">
                     <a ui-sref="app.index" ui-sref-active="active">
                         Home
@@ -31,12 +71,9 @@
                         Explore
                     </a>
                 </li>
-            </ul>
+            </ul> -->
 
             <ul class="nav navbar-nav navbar-right">
-                <li ui-sref-active="active">
-                    <a ui-sref="app.index">login</a>
-                </li>
                 <li ui-sref-active="active">
                     <a ui-sref="app.logout">Logout</a>
                 </li>
