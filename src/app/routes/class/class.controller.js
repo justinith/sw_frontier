@@ -25,6 +25,9 @@
         vm.completeTask = completeTask;
         vm.changeTask = changeTask;
         vm.nextStep = nextStep;
+        vm.setDone = setDone;
+        vm.tryPremium = tryPremium;
+        vm.submitFeedback = submitFeedback;
 
         init ();
 
@@ -113,6 +116,77 @@
 
                 vm.uploading = false;
             })
+        }
+
+        function setDone() {
+            console.log("hello done");
+            // check if the user's premium is done
+            var obj = Parse.User.current().fetch({
+              success: function(myObject) {
+                // The object was refreshed successfully.
+                console.log("checking if user has premium true or false or null");
+                console.log(myObject);
+                var premium = myObject.attributes.premium;
+                if (premium === undefined) {
+                    console.log("does not exist");
+                    myObject.set("premium", false);
+                    myObject.save(null, {
+                        success: function(data) {
+                            console.log("updated to false" );
+                        },
+                        error: function(data, error){
+                            console.log("failed");
+                        }
+                    });
+                }
+                else if (premium === false) {
+                    console.log("they've completed it already, don't do anything");
+                }
+                else if (premium === true ) {
+                    console.log("don't do anything either");
+                }
+
+              },
+              error: function(myObject, error) {
+                // The object was not refreshed successfully.
+                // error is a Parse.Error with an error code and message.
+              }
+            });
+        }
+
+        function tryPremium() {
+            //set premium to true
+            console.log("try Premium")
+            var obj = Parse.User.current();
+            obj.set("premium", true);
+            obj.save(null, {
+                success: function(data) {
+                    console.log("updated to true" );
+                },
+                error: function(data, error){
+                    console.log("failed");
+                }
+            });
+        }
+
+        function submitFeedback() {
+            console.log("submittingFeedback");
+            console.log(vm.feedbackData);
+
+            var Feedback = Parse.Object.extend("Feedback");
+            var feedback = new Feedback();
+
+            feedback.set("userId", Parse.User.current().id);
+            feedback.set("feedback", vm.feedbackData);
+            vm.feedbackData = "";
+            feedback.save(null, {
+                success: function(data) {
+                    console.log("saved feedback");
+                },
+                error: function(data, error) {
+                    console.log("failed to save feedback");
+                }
+            });
         }
     }
 } ());
