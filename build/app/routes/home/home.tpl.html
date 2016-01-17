@@ -1,0 +1,133 @@
+<style>
+
+    .ng-scope {
+        background-color:  rgb(84, 214, 207);
+        background: url(assets/images/bg.jpg);
+    }
+
+    .entranceOptions {
+        text-align: center;
+    }
+
+    .entranceOptions  h2 {
+        display: inline-block;
+        color: white;
+        padding: 0px 40px;
+        padding-bottom: 10px;
+        font-weight: 400;
+        letter-spacing: 3px;
+        font-size: 16pt;
+        margin-bottom: 25px;
+    }
+        .entranceOptions h2:hover {
+            cursor: pointer;
+        }
+
+        .entranceOptions .active {
+            border-bottom: rgb(242, 109, 125) solid 4px;
+        }
+
+    .input {
+        background-color: white;
+        padding: 12px 15px;
+        font-size: 12pt;
+        border: none;
+        border-radius: 8px;
+        margin-bottom: 10px;
+        display: inline-block;
+        width: 420px;
+    }
+
+        .input:focus {
+            outline: none;
+        }
+
+    ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+        color:    rgb(84, 214, 207);
+    }
+    :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+       color:    rgb(84, 214, 207);
+       opacity:  1;
+    }
+    ::-moz-placeholder { /* Mozilla Firefox 19+ */
+       color:    rgb(84, 214, 207);
+       opacity:  1;
+    }
+    :-ms-input-placeholder { /* Internet Explorer 10-11 */
+       color:    rgb(84, 214, 207);
+    }
+    :placeholder-shown { /* Standard (https://drafts.csswg.org/selectors-4/#placeholder) */
+      color:    rgb(84, 214, 207);
+    }
+
+    .entranceSection {
+        text-align: center;
+    }
+
+    .mainLogo {
+        width: 430px;
+        margin-top: 6%;
+    }
+
+    .secretHidden {
+        display: none;
+    }
+
+    .logoHolder {
+        text-align: center;
+    }
+
+    .goButton {
+        background-color: #fbaf5d;
+        width: 420px;
+        border: none;
+        height: 50px;
+        border-radius: 25px;
+        color: white;
+        letter-spacing: 5px;
+        text-transform: uppercase;
+        margin-top: 12px;
+        font-weight: 400;
+        font-size: 13pt;
+    }
+
+    .goButton:hover {
+        background-color: #E39137;
+    }
+
+</style>
+<div class="home page-container" ng-switch="HomeCtrl.toggle">
+    <div class="logoHolder">
+        <img class="mainLogo" src="assets/images/logo_white.png">
+    </div>
+    <div class="entranceOptions">
+        <h2 ng-class="HomeCtrl.toggle ? 'active' : '' " ng-click="HomeCtrl.toggle = true">SIGN UP</h2>
+        <h2 ng-class="HomeCtrl.toggle ? '' : 'active'  " ng-click="HomeCtrl.toggle = false">LOGIN</h2>
+    </div>
+        
+    <div class="entranceSection login" ng-switch-when="false">
+        <form class="panel-default" name="LoginForm" ng-submit="LoginForm.$valid && HomeCtrl.login(HomeCtrl.login)">
+            <div>
+                <input class="input" type="text" ng-model="HomeCtrl.login.email" name="email" placeholder="EMAIL" ng-required="true"/>
+            </div>
+            <div>
+                <input class="input" placeholder="PASSWORD" type="password" ng-model="HomeCtrl.login.password" name="password" ng-required="true"/>
+            </div>
+            <button class="goButton" type="submit">Login</button>
+        </form>
+    </div>
+
+    <div class="entranceSection signup" ng-switch-when="true">
+        <form name="SignupForm" ng-submit="SignupForm.$valid && HomeCtrl.signUp(HomeCtrl.signup)">
+            <!--<pre>{{SignupForm | json}}</pre>-->
+            <div>
+                <input placeholder="EMAIL" class="input" type="email" ng-model="HomeCtrl.signup.email" name="email" ng-required="true" />
+            </div>
+            <div>
+                <input placeholder="PASSWORD" class="input" type="password" ng-model="HomeCtrl.signup.password" name="password" ng-required="true" />
+            </div>
+            <button class="goButton" type="submit">Sign Up</button>
+        </form>
+    </div>
+
+</div>
