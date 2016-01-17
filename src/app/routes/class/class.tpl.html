@@ -1,25 +1,77 @@
 <style>
-    .home{
+    .class{
         display: flex;
+    }
+    .class > div{
+        width: 100%;
+    }
 
+    .class .step-list{
+        list-style: none;
+        padding-left: 0;
+    }
+    .class .step-list > li{
+        min-height: 50px;
+        display: flex;
+        align-items: center;
+        font-size: 1.5em;
+        border-top: 3px solid #e1e1e1;
+    }
+    .class .step-list > li:before {
+        content: "\f111";
+        font-family: 'FontAwesome';
+        float: left;
+        margin-left: 5em;
+        margin-right: 1em;
+        color: #0074D9;
+    }
+    .class .step-list > li.completed{
+        color: #56e0d8;
+    }
+    .class .step-list.completed > li:before{
+        content: "\f00c";
+    }
+
+    .class .step-list > li.active{
+        color: #fbaf5d;
+    }
+    .class .step-list.active > li:before{
+        content: "\f192";
     }
 </style>
-<div class="page-container">
+<div class="class page-container">
+    <div class="left-side">
+        <div class="video" style="padding: 5%; background-color: #e1e1e1">
+        <youtube-player url="tab.videoUrl" style="width: 100%; background-color: white;border: none;"></youtube-player>
+        </div>
+        <ul class="step-list" >
+            <li ng-repeat="step in ClassCtrl.steps track by $index" ng-class="ClassCtrl.getStepClass($index, step.complete)">
+                {{step.description}}
+            </li>
+        </ul>
+    </div>
+    <div class="right">
+        <i class="fa icon" ng-class="ClassCtrl.category.attributes.icon"></i>
+        <h3>{{ClassCtrl.selectedStep.title}}</h3>
+        <p>{{ClassCtrl.category.attributes.description}}</p>
 
-    <div id="title" ng-bind="ClassCtrl.title"></div>
-    
 
-    <uib-tabset>    
-        <uib-tab ng-repeat="tab in ClassCtrl.tabs" heading="{{tab.tabTitle}}" active="tab.userCurrentlyAtThisTab" >
-            <div class="description" ng-show="tab.showDescription">{{tab.descriptionText}}</div>
-            <youtube-player width="200" height="200" url="tab.videoUrl"></youtube-player>
-            <div class="fileUpload" ng-show="tab.showUpload">
-                Upload Button
-            </div>
 
-        </uib-tab>
-    </uib-tabset>
+    </div>
+    <!--<div id="title" ng-bind="ClassCtrl.title"></div>-->
 
-    <div id="next"></div>
+
+    <!--<uib-tabset>    -->
+        <!--<uib-tab ng-repeat="tab in ClassCtrl.tabs" heading="{{tab.tabTitle}}" active="tab.userCurrentlyAtThisTab" >-->
+            <!--<div class="description" ng-show="tab.showDescription">{{tab.descriptionText}}</div>-->
+            <!--<youtube-player width="200" height="200" url="tab.videoUrl"></youtube-player>-->
+            <!--<div class="fileUpload" ng-show="tab.showUpload">-->
+                <!--Upload Button-->
+            <!--</div>-->
+<!---->
+        <!--</uib-tab>-->
+    <!--</uib-tabset>-->
+<!---->
+    <!--<div id="next"></div>-->
 
 </div>
