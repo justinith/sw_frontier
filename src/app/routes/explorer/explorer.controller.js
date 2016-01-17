@@ -27,7 +27,7 @@
             var Category = Parse.Object.extend ('Category');
             var query = new Parse.Query (Category);
             query.find ().then (function (success) {
-                vm.list = success;
+                vm.list.push(success[0]);
                 $scope.$digest ();
             }, function (err) {
                 alert ('Error loading Categories');

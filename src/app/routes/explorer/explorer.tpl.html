@@ -1,38 +1,103 @@
  <style>
+
     .ng-scope {
-        font-family:"Avenir Black";
-        background-color: yellow;
+        font-family:"Helvetica Neue";
+        background-color:  rgb(84, 214, 207);
     }
 
     .exploreTitleContainer{ 
         margin-top: 20px;
     }
+
     .exploreTitle{
         text-align: center;
         margin-top: 0;
-        margin-bottom: 0;
+        margin-bottom: 30px;
         color: white;
+        font-weight: 400;
+        letter-spacing: 3px;
+        font-size: 30pt;
+    }
+
+    .center {
+        margin: auto;
+        width: 60%;
+        padding: 10px 0px;
+    }
+
+    .center-text {
+        text-align: center;
+    }
+
+    .white-circle-icon {
+        border-radius: 50%;
+        background-color:  white;
+        display: inline-block;
+        padding: 25px;
+    }
+        .white-circle-icon i {
+            color: rgb(242, 109, 125);
+        }
+
+        .white-circle-icon:hover{
+            background-color: rgb(242, 109, 125);
+            border-radius: 50%;
+            display: inline-block;
+            padding: 25px;
+            cursor: pointer;
+        }
+    
+        .white-circle-icon:hover i{
+            color: white;
+        }
+
+    .className {
+        text-align: center;
+        color: white;
+        font-size: 25pt;
+    }
+
+    .classDescription {
+        width: 470px;
+        text-align: center;
+        margin-right: auto;
+        margin-left: auto;
+        color: white;
+        font-size: 13pt;
+    }
+
+    .moreToCome {
+        color: white;
+    }
+
+    .compLogos img {
+        width: 190px;
     }
     
 </style>
 <div class="explorer page-container"
 ng-init="DashCtrl.url = 'https://www.youtube.com/embed/H1I4ObpzszE'">
     <div class="exploreTitleContainer">
-        <h2 class="exploreTitle">PICK THE PROFESSION THAT</h2>
-        <h2 class="exploreTitle">BEST INTERESTS YOU!</h2>
-        <div class="row">
-            <i class="fa fa-camera-retro fa-5x"></i> 
-            <i class="fa fa-camera-retro fa-5x"></i> 
+        <h2 class="exploreTitle">WANT TO EXPLORE DESIGN?</h2>
+        <div class="center center-text ">
+            <div class="white-circle-icon">
+                <i class="fa fa-eye fa-4x"></i>     
+            </div>
         </div>
-        <div class="row">
+        <div class="center center-text">
             
-            <div class="col-sm-3" ng-repeat="category in DashCtrl.list">
-                <button class="btn btn-primary" ng-click="DashCtrl.selectClass(category)">
-                    {{category.attributes.name}}
-                </button>
+            <div class="col-sm-12" ng-repeat="category in ExplorerCtrl.list">
+                <div class="btn" ng-click="ExplorerCtrl.selectClass(category)">
+                    <span class="className">{{category.attributes.name}}</span>
+                </div>
+                <p class="classDescription">Get a feel for the different tasks and type of problem solving UX Designers face on a daily basis. By going through the steps of designing a mobile app, you’ll finish with a greater understanding of this role’s responsibilities and merit.</p>
+                <div class="compLogos">
+                    <img src="http://www.userlogos.org/files/logos/siipikarja/google_white.png">
+                    <img src="https://saucelabs.com/new-images/cust_img_eventbrite_logo2x.png">
+                </div>
             </div>
         </div>
     </div>
 
-    <p>More to come...</p>
+    <p class="center center-text moreToCome">More to come...</p>
 </div>
