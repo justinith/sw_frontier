@@ -255,10 +255,10 @@
 
     angular
         .module ('app.routes')
-        .controller ('FeedbackCtrl', FeedbackCtrl);
+        .controller ('DashCtrl', DashCtrl);
 
 
-    function FeedbackCtrl() {
+    function DashCtrl() {
 
         var vm = this;
 
@@ -298,6 +298,9 @@
         vm.completeTask = completeTask;
         vm.changeTask = changeTask;
         vm.nextStep = nextStep;
+        vm.setDone = setDone;
+        vm.tryPremium = tryPremium;
+        vm.submitFeedback = submitFeedback;
 
         init ();
 
@@ -342,17 +345,28 @@
         }
 
         function nextStep() {
-            var nextIndex = vm.selectedTab.index + 1;
-            if (!vm.steps.finished) {
+            var currentIndex = vm.selectedTab.index;
+            var nextIndex = currentIndex + 1;
+            vm.steps[currentIndex].complete = true;
+            //if (!vm.steps.finished) {
                 vm.selectedTab = vm.steps[nextIndex];
-            }
+            completeTask();
+            //}
         }
 
         function upload(file, currentStep) {
             vm.uploading = true;
-            
-            Api.uploadClassFile (file, vm.class.id, vm.selectedTab.index).then (completeTask, function (err) {
-                
+            Api.uploadClassFile (file, vm.class.id, vm.selectedTab.index).then (function(){
+                vm.uploading = false;
+                swal({
+                    title: 'Thank you for Uploading',
+                    text: "Someone will look at your work and get back to you as soon as possible",
+                    confirmButtonColor: "#fbaf5d",
+                    confirmButtonText: "Continue"
+                }, function(){
+                    $state.go('app.explorer');
+                })
+            }, function (err) {
                 vm.uploading = false;
             })
 
@@ -360,7 +374,6 @@
 
 
         function changeTask(index) {
-            //console.log(vm.steps)
             if (!vm.steps.finished) {
                 vm.selectedTab = vm.steps[index];
             }
@@ -368,26 +381,154 @@
 
         function completeTask() {
             Api.getClassByCategoryId (selectedCategory).then (function (classObj) {
-                var index = vm.selectedTab.index;
-                var steps = angular.copy (classObj.attributes.steps);
-                steps[index].complete = true;
-                if (!steps[index + 1]) {
-                    classObj.set ('finished', true);
-                }
-                classObj.set ('steps', steps);
+                classObj.set ('steps', vm.steps);
                 classObj.save ();
-
-                vm.class = classObj;
-                vm.steps = classObj.attributes.steps;
-                vm.selectedTab = vm.steps[index];
-
-                vm.uploading = false;
             }, function () {
 
-                vm.uploading = false;
             })
         }
+
+        function setDone() {
+            // check if the user's premium is done
+            var obj = Parse.User.current().fetch({
+              success: function(myObject) {
+                // The object was refreshed successfully.
+                var premium = myObject.attributes.premium;
+                if (premium === undefined) {
+                    myObject.set("premium", false);
+                    myObject.save(null, {
+                        success: function(data) {
+                            
+                        },
+                        error: function(data, error){
+                            
+                        }
+                    });
+                }
+                else if (premium === false) {
+                    
+                }
+                else if (premium === true ) {
+                    
+                }
+
+              },
+              error: function(myObject, error) {
+                // The object was not refreshed successfully.
+                // error is a Parse.Error with an error code and message.
+              }
+            });
+        }
+
+        function tryPremium() {
+            //set premium to true
+            console.log("try Premium")
+            var obj = Parse.User.current();
+            obj.set("premium", true);
+            obj.save(null, {
+                success: function(data) {
+                    
+                },
+                error: function(data, error){
+                    
+                }
+            });
+        }
+
+        function submitFeedback() {
+            
+            
+
+            var Feedback = Parse.Object.extend("Feedback");
+            var feedback = new Feedback();
+
+            feedback.set("userId", Parse.User.current().id);
+            feedback.set("feedback", vm.feedbackData);
+            vm.feedbackData = "";
+            feedback.save(null, {
+                success: function(data) {
+
+                    swal({
+                        title: 'Thank you for the Feedback',
+                        confirmButtonColor: "#fbaf5d",
+                        confirmButtonText: "Close"
+                    });
+                    
+                },
+                error: function(data, error) {
+                    
+                }
+            });
+        }
     }
+} ());
+(function () {
+    'use strict';
+
+    angular
+        .module ('app.routes')
+        .controller ('FeedbackCtrl', FeedbackCtrl);
+
+
+    function FeedbackCtrl() {
+
+        var vm = this;
+
+        init ();
+
+        function init() {
+
+        }
+
+    }
+
+} ());
+(function () {
+    'use strict';
+
+    angular
+        .module ('app.routes')
+        .controller ('HomeCtrl', HomeCtrl);
+
+
+    function HomeCtrl($state) {
+        var vm = this;
+        vm.toggle = true;
+
+        vm.login = login;
+        vm.signUp = signUp;
+
+        init ();
+
+        function init() {
+            
+
+        }
+
+            function signUp(info){
+                
+                Parse.User.signUp(info.email, info.password).then(function(res){
+                    
+                    $state.go('app.explorer');
+                }, function(err){
+                    
+                });
+
+            }
+            function login(info){
+                Parse.User.logIn(info.email, info.password).then(function(res){
+                    $state.go('app.explorer');
+                    
+                }, function(err){
+                    
+                });
+                
+            }
+
+
+
+    }
+
 } ());
 (function () {
     'use strict';
@@ -475,74 +616,6 @@
         vm.selectByIcon = function() {
             selectClass(vm.list[0]);
         }
-
-
-    }
-
-} ());
-(function () {
-    'use strict';
-
-    angular
-        .module ('app.routes')
-        .controller ('DashCtrl', DashCtrl);
-
-
-    function DashCtrl() {
-
-        var vm = this;
-
-        init ();
-
-        function init() {
-
-        }
-
-    }
-
-} ());
-(function () {
-    'use strict';
-
-    angular
-        .module ('app.routes')
-        .controller ('HomeCtrl', HomeCtrl);
-
-
-    function HomeCtrl($state) {
-        var vm = this;
-        vm.toggle = true;
-
-        vm.login = login;
-        vm.signUp = signUp;
-
-        init ();
-
-        function init() {
-            
-
-        }
-
-            function signUp(info){
-                
-                Parse.User.signUp(info.email, info.password).then(function(res){
-                    
-                    $state.go('app.explorer');
-                }, function(err){
-                    
-                });
-
-            }
-            function login(info){
-                Parse.User.logIn(info.email, info.password).then(function(res){
-                    $state.go('app.explorer');
-                    
-                }, function(err){
-                    
-                });
-                
-            }
-
 
 
     }

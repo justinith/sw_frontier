@@ -13,25 +13,40 @@
 
         color: #757575;
     }
+    .uploadButton.orange{
 
-    .uploadButton {
         color: #fbaf5d;
         background-color: white;
         border: #fbaf5d solid 2px;
+    }
+    .uploadButton.orange:hover{
+
+        background-color: #fbaf5d;
+        color: white;
+    }
+    .uploadButton.red{
+
+        color: #f26d7b;
+        background-color: white;
+        border: #f26d7b solid 2px;
+    }
+    .uploadButton.red:hover{
+        background-color: #f26d7b;
+        color: white;
+    }
+    .uploadButton {
+        /*color: #fbaf5d;*/
+        /*background-color: white;*/
+        /*border: #fbaf5d solid 2px;*/
         padding: 5px 35px;
         letter-spacing: 3px;
         font-size: 14pt;
         border-radius: 20px;
     }
-    .uploadButton:disabled{
+
+    .uploadButton:disabled {
         opacity: .4;
     }
-
-    .uploadButton:hover {
-        background-color: #fbaf5d;
-        color: white;
-    }
-
     .navbar {
         margin-bottom: 0px;
     }
@@ -71,12 +86,17 @@
 
     }
 
-    .right h3 {
+    .right h3{
         color: rgb(84, 214, 207);
         font-size: 30pt;
     }
+    .right h4{
+        color: rgb(84, 214, 207);
+        font-size: 20pt;
 
-    .taskCircle {
+    }
+
+      .taskCircle {
         display: inline-block;
         height: 16px;
         background-color: #757575;
@@ -89,6 +109,7 @@
     .taskCircle .active {
         background-color: rgb(84, 214, 207);
     }
+
     .white-circle-icon {
         border-radius: 50%;
         background-color: rgb(242, 109, 125);
@@ -99,19 +120,22 @@
     .white-circle-icon i {
         color: white;
     }
+
     .class .step-list > li.completed {
         color: #56e0d8;
     }
+
     .class .step-list > li.active {
         color: #fbaf5d;
     }
+
     .classDesc {
         padding: 0px 120px;
         color: gray;
         font-size: 12pt;
         margin-top: 30px;
         margin-bottom: 20px;
-        
+
     }
 </style>
 <div class="class page-container">
@@ -132,22 +156,58 @@
         <div class="white-circle-icon">
             <i class="fa fa-eye fa-4x"></i>
         </div>
-        <h3>{{ClassCtrl.selectedTab.title}}</h3>
-        <p class="classDesc">{{ClassCtrl.selectedTab.description}}</p>
         <div ng-if="ClassCtrl.selectedTab.index !== ClassCtrl.steps.length - 1">
-        <button ng-if="!ClassCtrl.selectedTab.complete"
-                ng-disabled="ClassCtrl.uploading"
-                type="file" class="uploadButton" ngf-select="ClassCtrl.upload($file)" ngf-max-size="10MB"
-                ngf-multiple="true">
-            <span ng-show="ClassCtrl.uploading"><i class="fa fa-spinner fa-pulse"></i> Uploading</span>
-            <span ng-show="!ClassCtrl.uploading">UPLOAD</span>
-        </button>
-        <button ng-if="ClassCtrl.selectedTab.complete"
-                ng-click="ClassCtrl.nextStep()"
-                class="uploadButton" ng-click="ClassCtrl.changeTask">Next</button>
+            <h3>{{ClassCtrl.selectedTab.title}}</h3>
+            <p class="classDesc">{{ClassCtrl.selectedTab.description}}</p>
+            <div>
+
+                <!--HERE ===== -->
+                <!--TO HERE ===== -->
+                <!--<button ng-if="ClassCtrl.selectedTab.complete"-->
+                <!--ng-click="ClassCtrl.nextStep()"-->
+                <!--class="uploadButton" ng-click="ClassCtrl.changeTask">Next</button>-->
+
+
+                <button
+                        ng-click="ClassCtrl.nextStep()"
+                        class="uploadButton orange">Next
+                </button>
+            </div>
         </div>
-        <a ui-sref="app.explorer" class="uploadButton" ng-if="ClassCtrl.selectedTab.index === ClassCtrl.steps.length - 1">Done</a>
+        <!--<a ui-sref="app.explorer" class="uploadButton" ng-if="ClassCtrl.selectedTab.index === ClassCtrl.steps.length - 1">Done</a>-->
+
+        <div ng-if="ClassCtrl.selectedTab.index === ClassCtrl.steps.length - 1" ng-init="ClassCtrl.setDone()">
+            <br/>
+<!--<<<<<<< HEAD-->
+            <!--<h4>So what do you think?</h4>-->
+            <!--<input placeholder="Did you enjoy learning UX Design?"/>-->
+            <!--<button>Submit</button>-->
+            <!--<h4>Want to get feedback from a pro?</h4>-->
+            <!--<h4>Upload with premium!</h4>-->
+<!--=======-->
+            <h4>So what do you think?</h4>
+            
+            <textarea class="form-control" style="max-width: 80%; width: 300px; margin: auto;" placeholder="Did you enjoy learning UX Design?"
+            ng-model="ClassCtrl.feedbackData"></textarea>
+            <br />
+            <button class="uploadButton orange" ng-click="ClassCtrl.submitFeedback()">Submit</button>
+
+            <br />
+            <br />
+            <br />
+
+            <h4>Want to get feedback from a pro?</h4>
+            <h4>Upload with premium!</h4>
+<!--&gt;>>>>>> 71d45843bb504a460b22e77294139a0c4e7f6abe-->
+
+            <button ng-disabled="ClassCtrl.uploading"
+                    ng-click="ClassCtrl.tryPremium()"
+                    type="file" class="uploadButton red" ngf-select="ClassCtrl.upload($file)" ngf-max-size="10MB"
+                    ngf-multiple="true">
+                <span ng-show="ClassCtrl.uploading"><i class="fa fa-spinner fa-pulse"></i> Uploading</span>
+                <span ng-show="!ClassCtrl.uploading">Try Premium</span>
+            </button>
+            <!--<button ng-click="ClassCtrl.tryPremium()">Try Premium</button>-->
+        </div>
     </div>
 </div>
-
-<!-- [{"complete":false,"description":"description ux-design class 0","title":"Assignment 1: Define User Personas","type":"upload","videoUrl":"https://www.youtube.com/embed/5w0fQ1AN0Io"},{"complete":false,"description":"description ux-design class 1","title":"Assignment 2: Create User Flow","type":"upload","videoUrl":"https://www.youtube.com/embed/ZR1PBCzIWXw"},{"complete":false,"description":"description ux-design class 2","title":"Assignment 3: Sketch Low-Fi Mockups","type":"upload","videoUrl":"https://www.youtube.com/embed/rsbSXxiur1s"},{"complete":false,"description":"description ux-design class 3","title":"You completed UX Design","type":"upload","videoUrl":"https://www.youtube.com/embed/rsbSXxiur1s"}] -->
