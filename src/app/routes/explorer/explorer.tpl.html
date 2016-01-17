@@ -1,7 +1,7 @@
  <style>
     .ng-scope {
         font-family:"Avenir Black";
-        background-color: yellow;
+        background-color:  rgb(84, 214, 207)
     }
 
     .exploreTitleContainer{ 
@@ -13,6 +13,19 @@
         margin-bottom: 0;
         color: white;
     }
+    .center {
+        margin: auto;
+        width: 60%;
+        border: 3px solid #73AD21;
+        padding: 20px;
+    }
+    .center-text {
+        text-align: center;
+    }
+    .white-circle-icon {
+        border-radius: 50%;
+        background-color:  50px;
+    }
     
 </style>
 <div class="explorer page-container"
@@ -20,19 +33,20 @@ ng-init="DashCtrl.url = 'https://www.youtube.com/embed/H1I4ObpzszE'">
     <div class="exploreTitleContainer">
         <h2 class="exploreTitle">PICK THE PROFESSION THAT</h2>
         <h2 class="exploreTitle">BEST INTERESTS YOU!</h2>
-        <div class="row">
-            <i class="fa fa-camera-retro fa-5x"></i> 
-            <i class="fa fa-camera-retro fa-5x"></i> 
+        <div class="center center-text ">
+            <div class="white-circle-icon">
+                <i class="fa fa-eye fa-5x"></i>     
+            </div>
         </div>
-        <div class="row">
+        <div class="center center-text">
             
-            <div class="col-sm-3" ng-repeat="category in DashCtrl.list">
-                <button class="btn btn-primary" ng-click="DashCtrl.selectClass(category)">
+            <div class="col-sm-3" ng-repeat="category in ExplorerCtrl.list">
+                <div class="btn" ng-click="ExplorerCtrl.selectClass(category)">
                     {{category.attributes.name}}
-                </button>
+                </div>
             </div>
         </div>
     </div>
 
-    <p>More to come...</p>
+    <p class="center center-text" >More to come...</p>
 </div>
