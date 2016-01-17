@@ -1,18 +1,20 @@
 <style>
-        .class .step-list{
-            list-style: none;
-            padding-left: 0;
-        }
-            .class .step-list > li{
-                font-size: 1.5em;
-                margin-bottom: 8px;
-                background-color: white;
-                padding: 25px 0px;
-                padding-left: 5%;
-            }
+    .class .step-list {
+        list-style: none;
+        padding-left: 0;
+    }
 
+    .class .step-list > li {
+        font-size: 1.5em;
+        margin-bottom: 8px;
+        background-color: white;
+        padding: 25px 0px;
+        padding-left: 5%;
 
-    .uploadButton{
+        color: #757575;
+    }
+
+    .uploadButton {
         color: #fbaf5d;
         background-color: white;
         border: #fbaf5d solid 2px;
@@ -21,10 +23,14 @@
         font-size: 14pt;
         border-radius: 20px;
     }
-        .uploadButton:hover {
-            background-color: #fbaf5d;
-            color: white;
-        }
+    .uploadButton:disabled{
+        opacity: .4;
+    }
+
+    .uploadButton:hover {
+        background-color: #fbaf5d;
+        color: white;
+    }
 
     .navbar {
         margin-bottom: 0px;
@@ -34,9 +40,10 @@
         background-color: #fbaf5d;
         border: none;
     }
-        .navbar-default .navbar-nav>li>a {
-            color: white;
-        }
+
+    .navbar-default .navbar-nav > li > a {
+        color: white;
+    }
 
     #blueLogo {
         display: none;
@@ -51,8 +58,8 @@
         float: left;
         background-color: #e1e1e1;
         -webkit-box-shadow: 0px 0px 15px 0px rgba(50, 50, 50, 0.41);
-        -moz-box-shadow:    0px 0px 15px 0px rgba(50, 50, 50, 0.41);
-        box-shadow:         0px 0px 15px 0px rgba(50, 50, 50, 0.41);
+        -moz-box-shadow: 0px 0px 15px 0px rgba(50, 50, 50, 0.41);
+        box-shadow: 0px 0px 15px 0px rgba(50, 50, 50, 0.41);
     }
 
     .right {
@@ -61,12 +68,13 @@
         float: left;
         text-align: center;
         padding-top: 70px;
-        
+
     }
-        .right h3 {
-            color: rgb(84, 214, 207);
-            font-size: 30pt;
-        }
+
+    .right h3 {
+        color: rgb(84, 214, 207);
+        font-size: 30pt;
+    }
 
     .taskCircle {
         display: inline-block;
@@ -77,44 +85,60 @@
         margin-right: 30px;
         margin-left: 10px;
     }
-        .taskCircle .active {
-            background-color: rgb(84, 214, 207);
-        }
 
-    .stepDescription {
-        color: #757575;
+    .taskCircle .active {
+        background-color: rgb(84, 214, 207);
     }
-
     .white-circle-icon {
         border-radius: 50%;
-        background-color:  rgb(242, 109, 125);
+        background-color: rgb(242, 109, 125);
         display: inline-block;
         padding: 25px;
     }
-        .white-circle-icon i {
-            color: white;
-        }
 
+    .white-circle-icon i {
+        color: white;
+    }
+    .class .step-list > li.completed {
+        color: #56e0d8;
+    }
+    .class .step-list > li.active {
+        color: #fbaf5d;
+    }
 </style>
 <div class="class page-container">
     <div class="left-side">
-        <div class="video" style="padding: 5%; background-color: #e1e1e1">
-        <youtube-player url="tab.videoUrl" style="width: 100%; background-color: white;border: none;"></youtube-player>
+        <div class="video" ng-if="ClassCtrl.selectedTab.videoUrl" style="padding: 5%; background-color: #e1e1e1">
+            <youtube-player url="ClassCtrl.selectedTab.videoUrl"
+                            style="width: 100%; background-color: white;border: none;"></youtube-player>
         </div>
-        <ul class="step-list" >
-            <li ng-repeat="step in ClassCtrl.steps track by $index" ng-class="ClassCtrl.getStepClass($index, step.complete)">
-                <div class="taskCircle"></div><span class="stepDescription">{{step.title}}</span>
+        <ul class="step-list">
+            <li ng-repeat="step in ClassCtrl.steps track by $index"
+                ng-class="ClassCtrl.getStepClass($index)">
+                <i class="fa fa-circle" style="margin-right: 10px;"></i>
+                <span class="stepDescription">{{step.title}}</span>
             </li>
         </ul>
     </div>
     <div class="right">
         <div class="white-circle-icon">
-            <i class="fa fa-eye fa-4x"></i>     
+            <i class="fa fa-eye fa-4x"></i>
         </div>
-        <h3>{{ClassCtrl.selectedStep.title || 'Assignment 1: User Personas'}}</h3>
+        <h3>{{ClassCtrl.selectedTab.title}}</h3>
         <p>{{ClassCtrl.selectedTab.description}}</p>
-
-        <button type="file" class="uploadButton" ngf-select="ClassCtrl.upload($file)" ngf-max-size="10MB" ngf-multiple="true">UPLOAD</button>
+        <div ng-if="ClassCtrl.selectedTab.index !== ClassCtrl.steps.length - 1">
+        <button ng-if="!ClassCtrl.selectedTab.complete"
+                ng-disabled="ClassCtrl.uploading"
+                type="file" class="uploadButton" ngf-select="ClassCtrl.upload($file)" ngf-max-size="10MB"
+                ngf-multiple="true">
+            <span ng-show="ClassCtrl.uploading"><i class="fa fa-spinner fa-pulse"></i> Uploading</span>
+            <span ng-show="!ClassCtrl.uploading">UPLOAD</span>
+        </button>
+        <button ng-if="ClassCtrl.selectedTab.complete"
+                ng-click="ClassCtrl.nextStep()"
+                class="uploadButton" ng-click="ClassCtrl.changeTask">Next</button>
+        </div>
+        <a ui-sref="app.explorer" class="uploadButton" ng-if="ClassCtrl.selectedTab.index === ClassCtrl.steps.length - 1">Done</a>
     </div>
 </div>
 

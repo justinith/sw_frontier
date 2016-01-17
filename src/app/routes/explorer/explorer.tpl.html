@@ -28,12 +28,14 @@
     .center-text {
         text-align: center;
     }
-
-    .white-circle-icon {
-        border-radius: 50%;
-        background-color:  white;
+    .circle-icon{
         display: inline-block;
         padding: 25px;
+        border-radius: 50%;
+    }
+
+    .white-circle-icon {
+        background-color:  white;
     }
         .white-circle-icon i {
             color: rgb(242, 109, 125);
@@ -81,12 +83,12 @@
     }
     
 </style>
-<div class="explorer page-container"
-ng-init="DashCtrl.url = 'https://www.youtube.com/embed/H1I4ObpzszE'">
+<div class="explorer page-container">
+    <div ng-if="!ClassCtrl.class.finished">
     <div class="exploreTitleContainer">
         <h2 class="exploreTitle">WANT TO EXPLORE DESIGN?</h2>
         <div class="center center-text ">
-            <div class="white-circle-icon">
+            <div class="white-circle-icon circle-icon">
                 <i class="fa fa-eye fa-4x"></i>
             </div>
         </div>
@@ -115,6 +117,10 @@ ng-init="DashCtrl.url = 'https://www.youtube.com/embed/H1I4ObpzszE'">
         </div>
         
     </form>
+    </div>
+    <div ng-if="ClassCtrl.class.finished">
+        <h3><i class="fa fa-check"Complete</h3>
+    </div>
 
 </div>
 

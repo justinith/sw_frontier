@@ -17,10 +17,14 @@
         vm.steps = [];
         vm.category = {};
         vm.class = {};
+        vm.uploading = false;
 
 
         vm.upload = upload;
         vm.getStepClass = getStepClass;
+        vm.completeTask = completeTask;
+        vm.changeTask = changeTask;
+        vm.nextStep = nextStep;
 
         init ();
 
@@ -29,14 +33,14 @@
             loadClass ();
         }
 
-        function getStepClass(index, completed) {
-            var classes = completed ? 'completed' : '';
-            var previous = vm.steps[index - 1];
-            if (!completed && (!previous || vm.steps[index - 1].complete)) {
-                classes += ' active';
+        function getStepClass(index) {
+            if(index < vm.selectedTab.index){
+                return 'completed';
+            } else if(index === vm.selectedTab.index){
+                return 'active';
             }
-            return classes;
-        };
+            return '';
+        }
 
 
         function loadClass() {
@@ -57,31 +61,36 @@
                         })
                         .first ()
                         ._wrapped;
+
+                    console.log(vm.selectedTab);
                 }, function (err) {
                     console.log ('Error', err);
                 })
         }
 
-        function nextStep(currentStep) {
-
+        function nextStep() {
+            var nextIndex = vm.selectedTab.index + 1;
+            if(!vm.steps.finished){
+                vm.selectedTab = vm.steps[nextIndex];
+            }
         }
 
         function upload(file, currentStep) {
+            vm.uploading = true;
             console.log ({a: vm.selectedTab});
             Api.uploadClassFile (file, vm.class.id, vm.selectedTab.index).then (completeTask, function (err) {
-                console.log ('error', err)
+                console.log ('error', err);
+                vm.uploading = false;
             })
 
         }
 
 
         function changeTask(index) {
-            console.log(vm.steps)
-            if(vm.steps[index]){
+            //console.log(vm.steps)
+            if(!vm.steps.finished){
                 vm.selectedTab = vm.steps[index];
-                return true;
             }
-            return false;
         }
 
         function completeTask() {
@@ -89,18 +98,21 @@
                 var index = vm.selectedTab.index;
                 var steps = angular.copy (classObj.attributes.steps);
                 steps[index].complete = true;
+                if(!steps[index + 1]){
+                    classObj.set('finished', true);
+                }
                 classObj.set ('steps', steps);
                 classObj.save ();
 
                 vm.class = classObj;
                 vm.steps = classObj.attributes.steps;
-                var nextTask = changeTask(index + 1);
-                if(!nextTask){
-                    alert();
-                }
-                console.log ('Hello!', classObj);
+                vm.selectedTab = vm.steps[index];
+
+
+                vm.uploading = false;
             }, function () {
 
+                vm.uploading = false;
             })
         }
 
