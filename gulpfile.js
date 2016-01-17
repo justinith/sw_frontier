@@ -96,6 +96,7 @@ gulp.task('dev-usemin', function () {
 gulp.task('dev-copy', function () {
     copy('src/**/*.tpl.html', 'dev');
     copy('src/assets/fonts/*', 'dev/assets/fonts');
+    copy('src/assets/images/*', 'dev/assets/images')
 });
 
 gulp.task('dev', ['dev-copy', 'dev-usemin', 'dev-scripts'], function () {
