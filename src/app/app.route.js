@@ -8,6 +8,7 @@
         // Redirects to /#/ path if no path is given in the url
         // ex: (cardinal.trialomics.com) will redirect to (cardinal.trialomics.com/#/)
         $urlRouterProvider.when('', '/home');
+        $urlRouterProvider.when('/', '/home');
 
 
         var base = {
