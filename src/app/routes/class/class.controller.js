@@ -27,6 +27,7 @@
         vm.nextStep = nextStep;
         vm.setDone = setDone;
         vm.tryPremium = tryPremium;
+        vm.submitFeedback = submitFeedback;
 
         init ();
 
@@ -157,6 +158,26 @@
                 },
                 error: function(data, error){
                     console.log("failed");
+                }
+            });
+        }
+
+        function submitFeedback() {
+            console.log("submittingFeedback");
+            console.log(vm.feedbackData);
+
+            var Feedback = Parse.Object.extend("Feedback");
+            var feedback = new Feedback();
+
+            feedback.set("userId", Parse.User.current().id);
+            feedback.set("feedback", vm.feedbackData);
+            vm.feedbackData = "";
+            feedback.save(null, {
+                success: function(data) {
+                    console.log("saved feedback");
+                },
+                error: function(data, error) {
+                    console.log("failed to save feedback");
                 }
             });
         }

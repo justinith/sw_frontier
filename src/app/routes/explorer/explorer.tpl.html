@@ -12,6 +12,9 @@
 
     .exploreTitleContainer {
         margin-top: 20px;
+        display: inline-block;
+        margin-right: auto;
+        margin-left: auto;
     }
 
     .exploreTitle {
@@ -41,38 +44,26 @@
     }
 
     .white-circle-icon {
-        background-color: white;
+        background-color:  rgb(242, 109, 125);
     }
-
-    .white-circle-icon i {
-        color: rgb(242, 109, 125);
-    }
-
-    .white-circle-icon:hover {
-        background-color: rgb(242, 109, 125);
-        border-radius: 50%;
-        display: inline-block;
-        padding: 25px;
-        cursor: pointer;
-    }
-
-    .white-circle-icon:hover i {
-        color: white;
-    }
+        .white-circle-icon i {
+            color: white;
+        }
 
     .className {
         text-align: center;
-        color: white;
+        color: rgb(242, 109, 125);
         font-size: 25pt;
     }
 
     .classDescription {
-        width: 470px;
         text-align: center;
         margin-right: auto;
         margin-left: auto;
-        color: white;
+        color: gray;
         font-size: 13pt;
+        padding-left: 23px;
+        padding-right: 23px;
     }
 
     .moreToCome {
@@ -80,9 +71,17 @@
         font-size: 13pt;
     }
 
-    .compLogos img {
-        width: 190px;
-    }
+        .compLogos img {
+            width: 140px;
+            padding: 0px 15px;
+        }
+
+        .compLogos p {
+            margin: 0px;
+            margin-top: 30px;
+            color: gray;
+            font-style: italic;
+        }
 
     .input-text {
         color: black;
@@ -91,40 +90,80 @@
         cursor: default;
     }
 
+    .theClassCard {
+        background-color: red; display: inline-block;
+    }
+    
 </style>
 <div class="explorer page-container">
+    <div ng-if="!ClassCtrl.class.finished">
+        <h2 class="exploreTitle">TEST DRIVE PROFESSIONS</h2>
+    <div style="text-align: center;">
     <div class="exploreTitleContainer">
-        <h2 class="exploreTitle">WANT TO EXPLORE DESIGN?</h2>
-        <div class="center center-text ">
-            <div class="white-circle-icon circle-icon">
-                <i class="fa fa-eye fa-4x" ng-click="ExplorerCtrl.selectByIcon()"></i>
+        
+        <div class="theClassCard" style="background-color: white; display: inline-block; border-radius: 20px;-webkit-box-shadow: 0px 0px 20px 0px rgba(50, 50, 50, 0.49);
+-moz-box-shadow:    0px 0px 20px 0px rgba(50, 50, 50, 0.49);
+box-shadow:         0px 0px 20px 0px rgba(50, 50, 50, 0.49); padding-top: 20px; padding-bottom: 30px; width: 350px;">
+            <div class="center center-text ">
+                <div class="white-circle-icon circle-icon">
+                    <i class="fa fa-users fa-4x"></i>
+                </div>
+            </div>
+            <div class="center-text">
+                    <div class="btn">
+                        <span class="className" style="font-size: 17pt;">Social Media Marketer</span>
+                    </div>
+                    <h2>COMING SOON</h2>
+                </div>
             </div>
         </div>
-        <div class="center center-text">
-            <div class="col-sm-12" ng-repeat="category in ExplorerCtrl.list">
-                <div class="btn" ng-click="ExplorerCtrl.selectClass(category)">
-                    <span class="className">{{category.attributes.name}}</span>
+        <div class="theClassCard" style="background-color: white; display: inline-block; border-radius: 20px;-webkit-box-shadow: 0px 0px 20px 0px rgba(50, 50, 50, 0.49);
+-moz-box-shadow:    0px 0px 20px 0px rgba(50, 50, 50, 0.49);
+box-shadow:         0px 0px 20px 0px rgba(50, 50, 50, 0.49); padding-top: 20px; padding-bottom: 30px; margin-right: 10px; margin-left: 10px;">
+            <div class="center center-text ">
+                <div class="white-circle-icon circle-icon">
+                    <i class="fa fa-eye fa-4x" ng-click="ExplorerCtrl.selectByIcon()"></i>
                 </div>
-                <p class="classDescription">Get a feel for the different tasks and type of problem solving UX Designers
-                    face on a daily basis. By going through the steps of designing a mobile app, you’ll finish with a
-                    greater understanding of this role’s responsibilities and merit.</p>
-                <div class="compLogos">
-                    <img src="http://www.userlogos.org/files/logos/siipikarja/google_white.png">
-                    <img src="https://saucelabs.com/new-images/cust_img_eventbrite_logo2x.png">
+            </div>
+            <div class="center-text">
+                <div class="" ng-repeat="category in ExplorerCtrl.list">
+                    <div class="btn" ng-click="ExplorerCtrl.selectClass(category)">
+                        <span class="className">{{category.attributes.name}}</span>
+                    </div>
+                    <p class="classDescription" style="width: 450px;">Get a feel for the different tasks and type of problem solving UX Designers face on a daily basis. By going through the steps of designing a mobile app, you’ll finish with a greater understanding of this role’s responsibilities and merit.</p>
+                    <div class="compLogos">
+                        <p>Built in collaboration with UX Designers from</p>
+                        <img src="assets/images/googleGray.png">
+                        <img src="assets/images/eb.png">
+                    </div>
                 </div>
-
+            </div>
+        </div>
+        <div class="theClassCard" style="background-color: white; display: inline-block; border-radius: 20px;-webkit-box-shadow: 0px 0px 20px 0px rgba(50, 50, 50, 0.49);
+-moz-box-shadow:    0px 0px 20px 0px rgba(50, 50, 50, 0.49);
+box-shadow:         0px 0px 20px 0px rgba(50, 50, 50, 0.49); padding-top: 20px; padding-bottom: 30px; width: 350px;">
+            <div class="center center-text ">
+                <div class="white-circle-icon circle-icon">
+                    <i class="fa fa-file-code-o fa-4x"></i>
+                </div>
+            </div>
+            <div class="center-text">
+                    <div class="btn">
+                        <span class="className" style="font-size: 17pt;">Web Developer</span>
+                    </div>
+ 
+                    <h2>COMING SOON</h2>
+                </div>
             </div>
         </div>
     </div>
-
-    <p class="center center-text moreToCome">More to come...</p>
-    <p class="center center-text classDescription">Digital Marketing, Web Development, Software Engineering</p>
-    <form class="center center-text" name="InterestsForm"
-          ng-submit="ExplorerCtrl.sendInterests(ExplorerCtrl.interests)">
-        <div class="classDescription"> Other professions?
-            <input
-                    placeholder="What other professions interest you?" type="text"
-                    class="input input-text" ng-model="ExplorerCtrl.interests" name="interests" ng-required="true"/>
+    </div>
+    <p class="center center-text moreToCome">Stay tuned for more to come...</p>
+    <form class="center center-text" name="InterestsForm" ng-submit="ExplorerCtrl.sendInterests(ExplorerCtrl.interests)">
+        <div class="classDescription">Want to explore other professions? Tell Us!
+            <input 
+            placeholder="ie; surgeon, chef, etc." type="text"
+            class="input input-text" ng-model="ExplorerCtrl.interests" name="interests" ng-required="true" />
         </div>
 
     </form>

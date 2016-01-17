@@ -13,11 +13,31 @@
 
         color: #757575;
     }
+    .uploadButton.orange{
 
-    .uploadButton {
         color: #fbaf5d;
         background-color: white;
         border: #fbaf5d solid 2px;
+    }
+    .uploadButton.orange:hover{
+
+        background-color: #fbaf5d;
+        color: white;
+    }
+    .uploadButton.red{
+
+        color: #f26d7b;
+        background-color: white;
+        border: #f26d7b solid 2px;
+    }
+    .uploadButton.red:hover{
+        background-color: #f26d7b;
+        color: white;
+    }
+    .uploadButton {
+        /*color: #fbaf5d;*/
+        /*background-color: white;*/
+        /*border: #fbaf5d solid 2px;*/
         padding: 5px 35px;
         letter-spacing: 3px;
         font-size: 14pt;
@@ -27,12 +47,6 @@
     .uploadButton:disabled {
         opacity: .4;
     }
-
-    .uploadButton:hover {
-        background-color: #fbaf5d;
-        color: white;
-    }
-
     .navbar {
         margin-bottom: 0px;
     }
@@ -156,22 +170,39 @@
 
                 <button
                         ng-click="ClassCtrl.nextStep()"
-                        class="uploadButton">Next
+                        class="uploadButton orange">Next
                 </button>
             </div>
         </div>
         <!--<a ui-sref="app.explorer" class="uploadButton" ng-if="ClassCtrl.selectedTab.index === ClassCtrl.steps.length - 1">Done</a>-->
 
         <div ng-if="ClassCtrl.selectedTab.index === ClassCtrl.steps.length - 1" ng-init="ClassCtrl.setDone()">
+            <br/>
+<!--<<<<<<< HEAD-->
+            <!--<h4>So what do you think?</h4>-->
+            <!--<input placeholder="Did you enjoy learning UX Design?"/>-->
+            <!--<button>Submit</button>-->
+            <!--<h4>Want to get feedback from a pro?</h4>-->
+            <!--<h4>Upload with premium!</h4>-->
+<!--=======-->
             <h4>So what do you think?</h4>
-            <input placeholder="Did you enjoy learning UX Design?"/>
-            <button>Submit</button>
+            
+            <textarea class="form-control" style="max-width: 80%; width: 300px; margin: auto;" placeholder="Did you enjoy learning UX Design?"
+            ng-model="ClassCtrl.feedbackData"></textarea>
+            <br />
+            <button class="uploadButton orange" ng-click="ClassCtrl.submitFeedback()">Submit</button>
+
+            <br />
+            <br />
+            <br />
+
             <h4>Want to get feedback from a pro?</h4>
             <h4>Upload with premium!</h4>
+<!--&gt;>>>>>> 71d45843bb504a460b22e77294139a0c4e7f6abe-->
 
             <button ng-disabled="ClassCtrl.uploading"
                     ng-click="ClassCtrl.tryPremium()"
-                    type="file" class="uploadButton" ngf-select="ClassCtrl.upload($file)" ngf-max-size="10MB"
+                    type="file" class="uploadButton red" ngf-select="ClassCtrl.upload($file)" ngf-max-size="10MB"
                     ngf-multiple="true">
                 <span ng-show="ClassCtrl.uploading"><i class="fa fa-spinner fa-pulse"></i> Uploading</span>
                 <span ng-show="!ClassCtrl.uploading">Try Premium</span>
