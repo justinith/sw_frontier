@@ -16,6 +16,7 @@
         color: white;
         font-weight: 400;
         letter-spacing: 3px;
+        font-size: 30pt;
     }
 
     .center {
@@ -38,18 +39,26 @@
             color: rgb(242, 109, 125);
         }
 
+        .white-circle-icon:hover{
+            background-color: rgb(242, 109, 125);
+            border-radius: 50%;
+            display: inline-block;
+            padding: 25px;
+            cursor: pointer;
+        }
+    
+        .white-circle-icon:hover i{
+            color: white;
+        }
+
     .className {
         text-align: center;
         color: white;
         font-size: 25pt;
     }
 
-    .className:hover {
-        color: rgb(242, 109, 125);
-    }
-
     .classDescription {
-        width: 400px;
+        width: 470px;
         text-align: center;
         margin-right: auto;
         margin-left: auto;
@@ -59,6 +68,10 @@
 
     .moreToCome {
         color: white;
+    }
+
+    .compLogos img {
+        width: 190px;
     }
     
 </style>
@@ -77,7 +90,11 @@ ng-init="DashCtrl.url = 'https://www.youtube.com/embed/H1I4ObpzszE'">
                 <div class="btn" ng-click="ExplorerCtrl.selectClass(category)">
                     <span class="className">{{category.attributes.name}}</span>
                 </div>
-                <p class="classDescription">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc volutpat elementum sapien, in semper lorem lacinia vel. Vivamus et pretium nisl, vel maximus erat. Proin viverra metus ut molestie porta.</p>
+                <p class="classDescription">Get a feel for the different tasks and type of problem solving UX Designers face on a daily basis. By going through the steps of designing a mobile app, you’ll finish with a greater understanding of this role’s responsibilities and merit.</p>
+                <div class="compLogos">
+                    <img src="http://www.userlogos.org/files/logos/siipikarja/google_white.png">
+                    <img src="https://saucelabs.com/new-images/cust_img_eventbrite_logo2x.png">
+                </div>
             </div>
         </div>
     </div>

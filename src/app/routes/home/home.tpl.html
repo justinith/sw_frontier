@@ -1,31 +1,83 @@
 <style>
-    .home{
-        display: flex;
 
+    .ng-scope {
+        background-color:  rgb(84, 214, 207);
     }
+
+    .entranceOptions {
+        text-align: center;
+    }
+
+    .entranceOptions  h2 {
+        display: inline-block;
+        color: white;
+        padding: 0px 40px;
+        padding-bottom: 10px;
+        font-weight: 400;
+        letter-spacing: 3px;
+        font-size: 16pt;
+    }
+
+        .entranceOptions .active {
+            border-bottom: rgb(242, 109, 125) solid 4px;
+        }
+
+    .input {
+        background-color: white;
+        padding: 12px 15px;
+        font-size: 14pt;
+        border: none;
+        border-radius: 7px;
+        margin-bottom: 10px;
+        display: inline-block;
+        width: 420px;
+    }
+
+        .input:focus {
+            outline: none;
+        }
+
+    ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+        color:    rgb(84, 214, 207);
+    }
+    :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+       color:    rgb(84, 214, 207);
+       opacity:  1;
+    }
+    ::-moz-placeholder { /* Mozilla Firefox 19+ */
+       color:    rgb(84, 214, 207);
+       opacity:  1;
+    }
+    :-ms-input-placeholder { /* Internet Explorer 10-11 */
+       color:    rgb(84, 214, 207);
+    }
+    :placeholder-shown { /* Standard (https://drafts.csswg.org/selectors-4/#placeholder) */
+      color:    rgb(84, 214, 207);
+    }
+
+    .entranceSection {
+        text-align: center;
+    }
+
 </style>
 <div class="home page-container">
-
-
-    <div class="login panel">
-        <h3>Login</h3>
+    <div class="entranceOptions">
+        <h2 class="active">SIGN UP</h2>
+        <h2>LOGIN</h2>
+    </div>
+    <div class="entranceSection login">
         <form class="panel-default" name="LoginForm" ng-submit="LoginForm.$valid && HomeCtrl.login(HomeCtrl.login)">
             <div>
-            <label>Username</label>
-                <br/>
-                <input type="text" ng-model="HomeCtrl.login.email" name="email" placeholder="example@email.com" ng-required="true"/>
+                <input class="input" type="text" ng-model="HomeCtrl.login.email" name="email" placeholder="EMAIL" ng-required="true"/>
             </div>
             <div>
-            <label>Password</label>
-                <br/>
-                <input type="password" ng-model="HomeCtrl.login.password" name="password" ng-required="true"/>
+                <input class="input" placeholder="PASSWORD" type="password" ng-model="HomeCtrl.login.password" name="password" ng-required="true"/>
             </div>
             <button type="submit">Login</button>
         </form>
     </div>
 
-    <div class="signup">
-        <h3>Signup</h3>
+    <div class="entranceSection signup">
         <form name="SignupForm" ng-submit="SignupForm.$valid && HomeCtrl.signUp(HomeCtrl.signup)">
             <!--<pre>{{SignupForm | json}}</pre>-->
             <div>
@@ -44,3 +96,6 @@
 
 
 </div>
+<script type="text/javascript">
+    $("")
+</script>
