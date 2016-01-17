@@ -48,7 +48,7 @@
         }
 
         function viewClass(category) {
-            $state.go ('app.class', {id: category.id});
+            $state.go ('app.class', {tree: category.id});
         }
 
         function createClass(category) {
