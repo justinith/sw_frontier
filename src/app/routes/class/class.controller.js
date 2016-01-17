@@ -177,6 +177,7 @@
 
                     swal({
                         title: 'Thank you for the Feedback',
+                        confirmButtonColor: "#fbaf5d",
                         confirmButtonText: "Close"
                     });
                     console.log("saved feedback");
