@@ -11,7 +11,6 @@
         var currentUser = Parse.User.current ();
         vm.list = [];
         vm.description = 'Welcome to Frontier';
-
         vm.selectClass = selectClass;
         init ();
 
@@ -23,7 +22,7 @@
             var Category = Parse.Object.extend ('Category');
             var query = new Parse.Query (Category);
             query.find ().then (function (success) {
-                vm.list.push(success[0]);
+                vm.list.push (success[0]);
                 $scope.$digest ();
             }, function (err) {
                 alert ('Error loading Categories');
@@ -33,15 +32,15 @@
 
         function selectClass(category) {
             Api.getClassByCategoryId (category.id)
-                .then (function(res){
-                    console.log(res);
-                    console.log('Hello1');
-                        viewClass(category);
+                .then (function (res) {
+                        console.log (res);
+                        console.log ('Hello1');
+                        viewClass (category);
                     },
                     function (err) {
                         createClass (category)
                             .then (function () {
-                                console.log('class hello');
+                                console.log ('class hello');
                                 viewClass (category);
                             });
                     });

@@ -78,6 +78,8 @@
         width: 190px;
     }
 
+    .input-text {
+        color: black;
     .btn {
         cursor: default;
     }
@@ -93,7 +95,6 @@ ng-init="DashCtrl.url = 'https://www.youtube.com/embed/H1I4ObpzszE'">
             </div>
         </div>
         <div class="center center-text">
-            
             <div class="col-sm-12" ng-repeat="category in ExplorerCtrl.list">
                 <div class="btn" ng-click="ExplorerCtrl.selectClass(category)">
                     <span class="className">{{category.attributes.name}}</span>
@@ -109,13 +110,12 @@ ng-init="DashCtrl.url = 'https://www.youtube.com/embed/H1I4ObpzszE'">
     </div>
 
     <p class="center center-text moreToCome">More to come...</p>
-    <p class="center center-text">Digital Marketing, Web Development, Software Engineering</p>
+    <p class="center center-text classDescription">Digital Marketing, Web Development, Software Engineering</p>
     <form class="center center-text" name="InterestsForm" ng-submit="ExplorerCtrl.sendInterests(ExplorerCtrl.interests)">
-        <div>
-            Other Professions?
+        <div class="classDescription"> Other professions?
             <input 
             placeholder="What other professions interest you?" type="text"
-            class="input" ng-model="ExplorerCtrl.interests" name="interests" ng-required="true" />
+            class="input input-text" ng-model="ExplorerCtrl.interests" name="interests" ng-required="true" />
         </div>
         
     </form>

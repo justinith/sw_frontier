@@ -40,9 +40,8 @@
                 url: 'logout',
                 controller: function($state){
                     Parse.User.logOut().then(function(res){
-                        console.log('user logout', res);
+                        $state.go('app.home');
                     }, function(err){
-                        console.log('user logout error', err);
                     })
 
                 }
