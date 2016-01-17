@@ -86,7 +86,7 @@
             Api.uploadClassFile (file, vm.class.id, vm.selectedTab.index).then (function(){
                 vm.uploading = false;
                 swal({
-                    title: 'Thanks for Uploading',
+                    title: 'Thank you for Uploading',
                     text: "Someone will look at your work and get back to you as soon as possible",
                     confirmButtonColor: "#fbaf5d",
                     confirmButtonText: "Continue"
@@ -174,6 +174,11 @@
             vm.feedbackData = "";
             feedback.save(null, {
                 success: function(data) {
+
+                    swal({
+                        title: 'Thank you for the Feedback',
+                        confirmButtonText: "Close"
+                    });
                     console.log("saved feedback");
                 },
                 error: function(data, error) {
