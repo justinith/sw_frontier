@@ -23,7 +23,8 @@
         font-size: 14pt;
         border-radius: 20px;
     }
-    .uploadButton:disabled{
+
+    .uploadButton:disabled {
         opacity: .4;
     }
 
@@ -71,12 +72,17 @@
 
     }
 
-    .right h3 {
+    .right h3{
         color: rgb(84, 214, 207);
         font-size: 30pt;
     }
+    .right h4{
+        color: rgb(84, 214, 207);
+        font-size: 20pt;
 
-    .taskCircle {
+    }
+
+      .taskCircle {
         display: inline-block;
         height: 16px;
         background-color: #757575;
@@ -89,6 +95,7 @@
     .taskCircle .active {
         background-color: rgb(84, 214, 207);
     }
+
     .white-circle-icon {
         border-radius: 50%;
         background-color: rgb(242, 109, 125);
@@ -99,19 +106,22 @@
     .white-circle-icon i {
         color: white;
     }
+
     .class .step-list > li.completed {
         color: #56e0d8;
     }
+
     .class .step-list > li.active {
         color: #fbaf5d;
     }
+
     .classDesc {
         padding: 0px 120px;
         color: gray;
         font-size: 12pt;
         margin-top: 30px;
         margin-bottom: 20px;
-        
+
     }
 </style>
 <div class="class page-container">
@@ -132,29 +142,32 @@
         <div class="white-circle-icon">
             <i class="fa fa-eye fa-4x"></i>
         </div>
-        <h3>{{ClassCtrl.selectedTab.title}}</h3>
-        <p class="classDesc">{{ClassCtrl.selectedTab.description}}</p>
         <div ng-if="ClassCtrl.selectedTab.index !== ClassCtrl.steps.length - 1">
+            <h3>{{ClassCtrl.selectedTab.title}}</h3>
+            <p class="classDesc">{{ClassCtrl.selectedTab.description}}</p>
+            <div>
 
-            <!--HERE ===== -->
-            <!--TO HERE ===== -->
-        <!--<button ng-if="ClassCtrl.selectedTab.complete"-->
+                <!--HERE ===== -->
+                <!--TO HERE ===== -->
+                <!--<button ng-if="ClassCtrl.selectedTab.complete"-->
                 <!--ng-click="ClassCtrl.nextStep()"-->
                 <!--class="uploadButton" ng-click="ClassCtrl.changeTask">Next</button>-->
 
 
-            <button
-                    ng-click="ClassCtrl.nextStep()"
-                    class="uploadButton">Next</button>
+                <button
+                        ng-click="ClassCtrl.nextStep()"
+                        class="uploadButton">Next
+                </button>
+            </div>
         </div>
         <!--<a ui-sref="app.explorer" class="uploadButton" ng-if="ClassCtrl.selectedTab.index === ClassCtrl.steps.length - 1">Done</a>-->
 
         <div ng-if="ClassCtrl.selectedTab.index === ClassCtrl.steps.length - 1" ng-init="ClassCtrl.setDone()">
-            <div>So what do you think?</div>
-            <input placeholder="Did you enjoy learning UX Design?"/> 
+            <h4>So what do you think?</h4>
+            <input placeholder="Did you enjoy learning UX Design?"/>
             <button>Submit</button>
-            <div>Want to get feedback from a pro?</div>
-            <div>Upload with premium!</div>
+            <h4>Want to get feedback from a pro?</h4>
+            <h4>Upload with premium!</h4>
 
             <button ng-disabled="ClassCtrl.uploading"
                     ng-click="ClassCtrl.tryPremium()"

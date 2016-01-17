@@ -71,17 +71,28 @@
         }
 
         function nextStep() {
-            var nextIndex = vm.selectedTab.index + 1;
-            if (!vm.steps.finished) {
+            var currentIndex = vm.selectedTab.index;
+            var nextIndex = currentIndex + 1;
+            vm.steps[currentIndex].complete = true;
+            //if (!vm.steps.finished) {
                 vm.selectedTab = vm.steps[nextIndex];
-            }
+            completeTask();
+            //}
         }
 
         function upload(file, currentStep) {
             vm.uploading = true;
-            console.log ({a: vm.selectedTab});
-            Api.uploadClassFile (file, vm.class.id, vm.selectedTab.index).then (completeTask, function (err) {
-                console.log ('error', err);
+            Api.uploadClassFile (file, vm.class.id, vm.selectedTab.index).then (function(){
+                vm.uploading = false;
+                swal({
+                    title: 'Thanks for Uploading',
+                    text: "Someone will look at your work and get back to you as soon as possible",
+                    confirmButtonColor: "#fbaf5d",
+                    confirmButtonText: "Continue"
+                }, function(){
+                    $state.go('app.explorer');
+                })
+            }, function (err) {
                 vm.uploading = false;
             })
 
@@ -89,7 +100,6 @@
 
 
         function changeTask(index) {
-            //console.log(vm.steps)
             if (!vm.steps.finished) {
                 vm.selectedTab = vm.steps[index];
             }
@@ -97,37 +107,20 @@
 
         function completeTask() {
             Api.getClassByCategoryId (selectedCategory).then (function (classObj) {
-                var index = vm.selectedTab.index;
-                var steps = angular.copy (classObj.attributes.steps);
-                steps[index].complete = true;
-                if (!steps[index + 1]) {
-                    classObj.set ('finished', true);
-                }
-                classObj.set ('steps', steps);
+                classObj.set ('steps', vm.steps);
                 classObj.save ();
-
-                vm.class = classObj;
-                vm.steps = classObj.attributes.steps;
-                vm.selectedTab = vm.steps[index];
-
-                vm.uploading = false;
             }, function () {
 
-                vm.uploading = false;
             })
         }
 
         function setDone() {
-            console.log("hello done");
             // check if the user's premium is done
             var obj = Parse.User.current().fetch({
               success: function(myObject) {
                 // The object was refreshed successfully.
-                console.log("checking if user has premium true or false or null");
-                console.log(myObject);
                 var premium = myObject.attributes.premium;
                 if (premium === undefined) {
-                    console.log("does not exist");
                     myObject.set("premium", false);
                     myObject.save(null, {
                         success: function(data) {
