@@ -105,6 +105,14 @@
     .class .step-list > li.active {
         color: #fbaf5d;
     }
+    .classDesc {
+        padding: 0px 120px;
+        color: gray;
+        font-size: 12pt;
+        margin-top: 30px;
+        margin-bottom: 20px;
+        
+    }
 </style>
 <div class="class page-container">
     <div class="left-side">
@@ -125,7 +133,7 @@
             <i class="fa fa-eye fa-4x"></i>
         </div>
         <h3>{{ClassCtrl.selectedTab.title}}</h3>
-        <p>{{ClassCtrl.selectedTab.description}}</p>
+        <p class="classDesc">{{ClassCtrl.selectedTab.description}}</p>
         <div ng-if="ClassCtrl.selectedTab.index !== ClassCtrl.steps.length - 1">
         <button ng-if="!ClassCtrl.selectedTab.complete"
                 ng-disabled="ClassCtrl.uploading"

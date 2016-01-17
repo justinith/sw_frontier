@@ -21,6 +21,7 @@
         // Redirects to /#/ path if no path is given in the url
         // ex: (cardinal.trialomics.com) will redirect to (cardinal.trialomics.com/#/)
         $urlRouterProvider.when('', '/home');
+        $urlRouterProvider.when('/', '/home');
 
 
         var base = {
@@ -254,6 +255,27 @@
 
     angular
         .module ('app.routes')
+        .controller ('FeedbackCtrl', FeedbackCtrl);
+
+
+    function FeedbackCtrl() {
+
+        var vm = this;
+
+        init ();
+
+        function init() {
+
+        }
+
+    }
+
+} ());
+(function () {
+    'use strict';
+
+    angular
+        .module ('app.routes')
         .controller ('ClassCtrl', ClassCtrl);
 
 
@@ -372,27 +394,6 @@
 
     angular
         .module ('app.routes')
-        .controller ('DashCtrl', DashCtrl);
-
-
-    function DashCtrl() {
-
-        var vm = this;
-
-        init ();
-
-        function init() {
-
-        }
-
-    }
-
-} ());
-(function () {
-    'use strict';
-
-    angular
-        .module ('app.routes')
         .controller ('ExplorerCtrl', ExplorerCtrl);
 
 
@@ -471,6 +472,10 @@
             });
         }
 
+        vm.selectByIcon = function() {
+            selectClass(vm.list[0]);
+        }
+
 
     }
 
@@ -480,10 +485,10 @@
 
     angular
         .module ('app.routes')
-        .controller ('FeedbackCtrl', FeedbackCtrl);
+        .controller ('DashCtrl', DashCtrl);
 
 
-    function FeedbackCtrl() {
+    function DashCtrl() {
 
         var vm = this;
 

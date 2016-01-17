@@ -1,19 +1,20 @@
- <style>
+ 
+<style>
 
-/*    .ng-scope {
-        font-family:"Helvetica Neue";
-        background-color:  rgb(84, 214, 207);
-    }*/
+    /*    .ng-scope {
+            font-family:"Helvetica Neue";
+            background-color:  rgb(84, 214, 207);
+        }*/
 
     body {
         background-color: rgb(84, 214, 207);
     }
 
-    .exploreTitleContainer{ 
+    .exploreTitleContainer {
         margin-top: 20px;
     }
 
-    .exploreTitle{
+    .exploreTitle {
         text-align: center;
         margin-top: 0;
         margin-bottom: 50px;
@@ -32,30 +33,32 @@
     .center-text {
         text-align: center;
     }
-    .circle-icon{
+
+    .circle-icon {
         display: inline-block;
         padding: 25px;
         border-radius: 50%;
     }
 
     .white-circle-icon {
-        background-color:  white;
+        background-color: white;
     }
-        .white-circle-icon i {
-            color: rgb(242, 109, 125);
-        }
 
-        .white-circle-icon:hover{
-            background-color: rgb(242, 109, 125);
-            border-radius: 50%;
-            display: inline-block;
-            padding: 25px;
-            cursor: pointer;
-        }
-    
-        .white-circle-icon:hover i{
-            color: white;
-        }
+    .white-circle-icon i {
+        color: rgb(242, 109, 125);
+    }
+
+    .white-circle-icon:hover {
+        background-color: rgb(242, 109, 125);
+        border-radius: 50%;
+        display: inline-block;
+        padding: 25px;
+        cursor: pointer;
+    }
+
+    .white-circle-icon:hover i {
+        color: white;
+    }
 
     .className {
         text-align: center;
@@ -83,13 +86,13 @@
 
     .input-text {
         color: black;
+    }
     .btn {
         cursor: default;
     }
-    
+
 </style>
 <div class="explorer page-container">
-    <div ng-if="!ClassCtrl.class.finished">
     <div class="exploreTitleContainer">
         <h2 class="exploreTitle">WANT TO EXPLORE DESIGN?</h2>
         <div class="center center-text ">
@@ -102,7 +105,9 @@
                 <div class="btn" ng-click="ExplorerCtrl.selectClass(category)">
                     <span class="className">{{category.attributes.name}}</span>
                 </div>
-                <p class="classDescription">Get a feel for the different tasks and type of problem solving UX Designers face on a daily basis. By going through the steps of designing a mobile app, you’ll finish with a greater understanding of this role’s responsibilities and merit.</p>
+                <p class="classDescription">Get a feel for the different tasks and type of problem solving UX Designers
+                    face on a daily basis. By going through the steps of designing a mobile app, you’ll finish with a
+                    greater understanding of this role’s responsibilities and merit.</p>
                 <div class="compLogos">
                     <img src="http://www.userlogos.org/files/logos/siipikarja/google_white.png">
                     <img src="https://saucelabs.com/new-images/cust_img_eventbrite_logo2x.png">
@@ -114,19 +119,15 @@
 
     <p class="center center-text moreToCome">More to come...</p>
     <p class="center center-text classDescription">Digital Marketing, Web Development, Software Engineering</p>
-    <form class="center center-text" name="InterestsForm" ng-submit="ExplorerCtrl.sendInterests(ExplorerCtrl.interests)">
+    <form class="center center-text" name="InterestsForm"
+          ng-submit="ExplorerCtrl.sendInterests(ExplorerCtrl.interests)">
         <div class="classDescription"> Other professions?
-            <input 
-            placeholder="What other professions interest you?" type="text"
-            class="input input-text" ng-model="ExplorerCtrl.interests" name="interests" ng-required="true" />
+            <input
+                    placeholder="What other professions interest you?" type="text"
+                    class="input input-text" ng-model="ExplorerCtrl.interests" name="interests" ng-required="true"/>
         </div>
-        
-    </form>
-    </div>
-    <div ng-if="ClassCtrl.class.finished">
-        <h3><i class="fa fa-check"Complete</h3>
-    </div>
 
+    </form>
 </div>
 
 
