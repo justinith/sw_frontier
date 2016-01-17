@@ -1,52 +1,86 @@
  <style>
+
     .ng-scope {
-        font-family:"Avenir Black";
-        background-color:  rgb(84, 214, 207)
+        font-family:"Helvetica Neue";
+        background-color:  rgb(84, 214, 207);
     }
 
     .exploreTitleContainer{ 
         margin-top: 20px;
     }
+
     .exploreTitle{
         text-align: center;
         margin-top: 0;
-        margin-bottom: 0;
+        margin-bottom: 30px;
         color: white;
+        font-weight: 400;
+        letter-spacing: 3px;
     }
+
     .center {
         margin: auto;
         width: 60%;
-        border: 3px solid #73AD21;
-        padding: 20px;
+        padding: 10px 0px;
     }
+
     .center-text {
         text-align: center;
     }
+
     .white-circle-icon {
         border-radius: 50%;
-        background-color:  50px;
+        background-color:  white;
+        display: inline-block;
+        padding: 25px;
+    }
+        .white-circle-icon i {
+            color: rgb(242, 109, 125);
+        }
+
+    .className {
+        text-align: center;
+        color: white;
+        font-size: 25pt;
+    }
+
+    .className:hover {
+        color: rgb(242, 109, 125);
+    }
+
+    .classDescription {
+        width: 400px;
+        text-align: center;
+        margin-right: auto;
+        margin-left: auto;
+        color: white;
+        font-size: 13pt;
+    }
+
+    .moreToCome {
+        color: white;
     }
     
 </style>
 <div class="explorer page-container"
 ng-init="DashCtrl.url = 'https://www.youtube.com/embed/H1I4ObpzszE'">
     <div class="exploreTitleContainer">
-        <h2 class="exploreTitle">PICK THE PROFESSION THAT</h2>
-        <h2 class="exploreTitle">BEST INTERESTS YOU!</h2>
+        <h2 class="exploreTitle">WANT TO EXPLORE DESIGN?</h2>
         <div class="center center-text ">
             <div class="white-circle-icon">
-                <i class="fa fa-eye fa-5x"></i>     
+                <i class="fa fa-eye fa-4x"></i>     
             </div>
         </div>
         <div class="center center-text">
             
-            <div class="col-sm-3" ng-repeat="category in ExplorerCtrl.list">
+            <div class="col-sm-12" ng-repeat="category in ExplorerCtrl.list">
                 <div class="btn" ng-click="ExplorerCtrl.selectClass(category)">
-                    {{category.attributes.name}}
+                    <span class="className">{{category.attributes.name}}</span>
                 </div>
+                <p class="classDescription">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc volutpat elementum sapien, in semper lorem lacinia vel. Vivamus et pretium nisl, vel maximus erat. Proin viverra metus ut molestie porta.</p>
             </div>
         </div>
     </div>
 
-    <p class="center center-text" >More to come...</p>
+    <p class="center center-text moreToCome">More to come...</p>
 </div>
