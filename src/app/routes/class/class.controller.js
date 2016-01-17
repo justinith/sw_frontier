@@ -34,9 +34,9 @@
         }
 
         function getStepClass(index) {
-            if(index < vm.selectedTab.index){
+            if (index < vm.selectedTab.index) {
                 return 'completed';
-            } else if(index === vm.selectedTab.index){
+            } else if (index === vm.selectedTab.index) {
                 return 'active';
             }
             return '';
@@ -62,7 +62,7 @@
                         .first ()
                         ._wrapped;
 
-                    console.log(vm.selectedTab);
+                    console.log (vm.selectedTab);
                 }, function (err) {
                     console.log ('Error', err);
                 })
@@ -70,7 +70,7 @@
 
         function nextStep() {
             var nextIndex = vm.selectedTab.index + 1;
-            if(!vm.steps.finished){
+            if (!vm.steps.finished) {
                 vm.selectedTab = vm.steps[nextIndex];
             }
         }
@@ -88,7 +88,7 @@
 
         function changeTask(index) {
             //console.log(vm.steps)
-            if(!vm.steps.finished){
+            if (!vm.steps.finished) {
                 vm.selectedTab = vm.steps[index];
             }
         }
@@ -98,8 +98,8 @@
                 var index = vm.selectedTab.index;
                 var steps = angular.copy (classObj.attributes.steps);
                 steps[index].complete = true;
-                if(!steps[index + 1]){
-                    classObj.set('finished', true);
+                if (!steps[index + 1]) {
+                    classObj.set ('finished', true);
                 }
                 classObj.set ('steps', steps);
                 classObj.save ();
@@ -108,56 +108,11 @@
                 vm.steps = classObj.attributes.steps;
                 vm.selectedTab = vm.steps[index];
 
-
                 vm.uploading = false;
             }, function () {
 
                 vm.uploading = false;
             })
         }
-
-
     }
-
 } ());
-
-//var a = [{
-//    "complete": true,
-//    "description": "description ux-design class 0",
-//    "title": "Assignment 1: Define User Personas",
-//    "type": "upload",
-//    "videoUrl": "https://www.youtube.com/embed/5w0fQ1AN0Io"
-//}, {
-//    "complete": false,
-//    "description": "description ux-design class 1",
-//    "title": "Assignment 2: Create User Flow",
-//    "type": "upload",
-//    "videoUrl": "https://www.youtube.com/embed/ZR1PBCzIWXw"
-//}, {
-//    "complete": false,
-//    "description": "description ux-design class 2",
-//    "title": "Assignment 3: Sketch Low-Fi Mockups",
-//    "type": "upload",
-//    "videoUrl": "https://www.youtube.com/embed/rsbSXxiur1s"
-//}, {
-//    "complete": false,
-//    "description": "description ux-design class 3",
-//    "title": "You completed UX Design",
-//    "type": "upload",
-//    "videoUrl": "https://www.youtube.com/embed/rsbSXxiur1s"
-//}]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
