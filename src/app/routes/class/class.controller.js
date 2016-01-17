@@ -6,42 +6,8 @@
         .controller ('ClassCtrl', ClassCtrl);
 
 
-    function ClassCtrl() {
+    function ClassCtrl($scope) {
         var vm = this;
-
-        var id = 123; //from query parameters
-
-        var mockData = {
-            userId: "123",
-            categoryId: 1,
-            step: 1,
-            steps:  [
-                { 
-                    videoUrl: "youtube",
-                    description: "description",
-                    type: "upload",
-                    complete: true
-                 }
-            ]
-        }
-
-        var userData = getDataForUser(id);
-
-        setPageData();
-        
-        function getDataForUser(userId) {
-            // calls to the DB
-            return mockData;
-        }
-
-        function setPageData() {
-            vm.title = "Example Title";
-            // vm.videoUrl = userData.steps[0].videoUrl;
-            var url = "http://www.youtube.com/embed/0Bmhjf0rKe8";
-            vm.videoUrl = url;
-
-        }
-
         vm.tabs = [
             { 
                 tabTitle: "1", 
@@ -63,7 +29,6 @@
                 showDescription: true,
                 descriptionText: "Hello description Text",
                 showUpload: true,
-                userCurrentlyAtThisTab: true
             },
             {
                 tabTitle: "4", 
@@ -79,6 +44,60 @@
                 descriptionText: "Hello description Text",
                 showUpload: false
             }];
+        
+        var categoryId = "scCgDCYLa6"; //from query parameters
+        var currentUser = Parse.User.current();
+        var userStr = JSON.stringify(currentUser);
+        var userId = currentUser.id
+        console.log("current user: " + userStr);
+        console.log("user's objectId: " + userId);
+
+        //get the category data for userId for this current category and populate it on the page
+        var UserClasses = Parse.Object.extend("UserClasses");
+        var query = new Parse.Query(UserClasses);
+        query.equalTo("categoryId", categoryId);
+        query.equalTo("userId", userId);
+        query.find({
+          success: function(object) {
+            console.log("success");
+            //check length is 1
+            populateTabData(object[0]);
+          },
+          error: function(object, error) {
+            console.log("errorr");
+          }
+        });
+
+        vm.title = "Example Title";
+
+        function populateTabData(tabData) {
+
+            var data = tabData.toJSON();
+            var steps = data.steps;
+
+            for (var i=0; i< steps.length; i++) {
+                console.log(steps[i]);
+                var currentStep = steps[i];
+                var currentTab = vm.tabs[i];
+
+                //check which step we are on
+                if (currentStep.complete === true) {
+                    currentTab.userCurrentlyAtThisTab = false;
+                }
+                else {
+                    currentTab.userCurrentlyAtThisTab = true; 
+                }
+
+                //set description and video
+                currentTab.descriptionText = currentStep.description;
+                currentTab.videoUrl = currentStep.videoUrl;
+                console.log("done: " + i);;
+                //check if upload or next
+
+            }
+            $scope.$digest();
+        };
+        
     }
 
 } ());
