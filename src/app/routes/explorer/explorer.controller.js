@@ -81,6 +81,10 @@
             });
         }
 
+        vm.selectByIcon = function() {
+            selectClass(vm.list[0]);
+        }
+
 
     }
 
