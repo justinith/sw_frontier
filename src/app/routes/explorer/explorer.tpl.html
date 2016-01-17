@@ -73,6 +73,10 @@
     .compLogos img {
         width: 190px;
     }
+
+    .input-text {
+        color: black;
+    }
     
 </style>
 <div class="explorer page-container"
@@ -101,13 +105,12 @@ ng-init="DashCtrl.url = 'https://www.youtube.com/embed/H1I4ObpzszE'">
     </div>
 
     <p class="center center-text moreToCome">More to come...</p>
-    <p class="center center-text">Digital Marketing, Web Development, Software Engineering</p>
+    <p class="center center-text classDescription">Digital Marketing, Web Development, Software Engineering</p>
     <form class="center center-text" name="InterestsForm" ng-submit="ExplorerCtrl.sendInterests(ExplorerCtrl.interests)">
-        <div>
-            Other Professions?
+        <div class="classDescription"> Other professions?
             <input 
             placeholder="What other professions interest you?" type="text"
-            class="input" ng-model="ExplorerCtrl.interests" name="interests" ng-required="true" />
+            class="input input-text" ng-model="ExplorerCtrl.interests" name="interests" ng-required="true" />
         </div>
         
     </form>
