@@ -23,7 +23,8 @@
             function signUp(info){
                 console.log('signup', info);
                 Parse.User.signUp(info.email, info.password).then(function(res){
-                    console.log('signup success', res)
+                    console.log('signup success', res);
+                    $state.go('app.explorer');
                 }, function(err){
                     console.log('signup err', err);
                 });
