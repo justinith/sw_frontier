@@ -69,15 +69,20 @@
         }
 
         function nextStep() {
+            var currentIndex = vm.selectedTab.index;
             var nextIndex = vm.selectedTab.index + 1;
-            if (!vm.steps.finished) {
-                vm.selectedTab = vm.steps[nextIndex];
-            }
+            vm.steps[currentIndex].complete = true;
+            //if (!vm.steps.finished) {
+                completeTask().then(function(){
+                    console.log('Completed');
+                    vm.selectedTab = vm.steps[nextIndex];
+                    $scope.$digest();
+                });
+            //}
         }
 
         function upload(file, currentStep) {
             vm.uploading = true;
-            console.log ({a: vm.selectedTab});
             Api.uploadClassFile (file, vm.class.id, vm.selectedTab.index).then (completeTask, function (err) {
                 console.log ('error', err);
                 vm.uploading = false;
@@ -94,24 +99,25 @@
         }
 
         function completeTask() {
-            Api.getClassByCategoryId (selectedCategory).then (function (classObj) {
-                var index = vm.selectedTab.index;
-                var steps = angular.copy (classObj.attributes.steps);
-                steps[index].complete = true;
-                if (!steps[index + 1]) {
-                    classObj.set ('finished', true);
-                }
-                classObj.set ('steps', steps);
-                classObj.save ();
+            return Api.getClassByCategoryId (selectedCategory).then (function (classObj) {
+                //var index = vm.selectedTab.index;
+                //var steps = angular.copy (classObj.attributes.steps);
+                //steps[index].complete = true;
+                //if (!steps[index + 1]) {
+                //    classObj.set ('finished', true);
+                //}
+                classObj.set ('steps', vm.steps);
+                return classObj.save ();
 
-                vm.class = classObj;
-                vm.steps = classObj.attributes.steps;
-                vm.selectedTab = vm.steps[index];
 
-                vm.uploading = false;
+                //vm.class = classObj;
+                //vm.steps = classObj.attributes.steps;
+                //vm.selectedTab = vm.steps[index];
+                //
+                //vm.uploading = false;
             }, function () {
-
-                vm.uploading = false;
+                return;
+                //vm.uploading = false;
             })
         }
     }
