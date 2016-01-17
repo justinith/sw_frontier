@@ -62,28 +62,7 @@
         <i class="fa icon" ng-class="ClassCtrl.category.attributes.icon"></i>
         <h3>{{ClassCtrl.selectedStep.title}}</h3>
         <p>{{ClassCtrl.category.attributes.description}}</p>
-        <!--<lable class="btn btn-primary upload-button">-->
-            <!--Upload-->
-        <!--<input type="file" class="uploadButton" name="file" />-->
-        <!--</lable>-->
+
         <button type="file" class="uploadButton" ngf-select="ClassCtrl.upload($file)" ngf-max-size="10MB" ngf-multiple="true">UPLOAD</button>
-
-
     </div>
-    <!--<div id="title" ng-bind="ClassCtrl.title"></div>-->
-
-
-    <!--<uib-tabset>    -->
-        <!--<uib-tab ng-repeat="tab in ClassCtrl.tabs" heading="{{tab.tabTitle}}" active="tab.userCurrentlyAtThisTab" >-->
-            <!--<div class="description" ng-show="tab.showDescription">{{tab.descriptionText}}</div>-->
-            <!--<youtube-player width="200" height="200" url="tab.videoUrl"></youtube-player>-->
-            <!--<div class="fileUpload" ng-show="tab.showUpload">-->
-                <!--Upload Button-->
-            <!--</div>-->
-<!---->
-        <!--</uib-tab>-->
-    <!--</uib-tabset>-->
-<!---->
-    <!--<div id="next"></div>-->
-
 </div>

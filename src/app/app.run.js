@@ -6,7 +6,7 @@
             var currentUser = Parse.User.current();
             if(toState.name == 'app.home' && currentUser){
                 e.preventDefault();
-                $state.go('app.dash');
+                $state.go('app.explorer');
             } else if(toState.name != 'app.home' && !currentUser){
                 e.preventDefault();
                 $state.go('app.home');
