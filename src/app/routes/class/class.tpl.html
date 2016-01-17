@@ -153,13 +153,13 @@
         </div>
         <!--<a ui-sref="app.explorer" class="uploadButton" ng-if="ClassCtrl.selectedTab.index === ClassCtrl.steps.length - 1">Done</a>-->
 
-        <div ng-if="ClassCtrl.selectedTab.index === ClassCtrl.steps.length - 1">
-
-
-
-
-
-
+        <div ng-if="ClassCtrl.selectedTab.index === ClassCtrl.steps.length - 1" ng-init="ClassCtrl.setDone()">
+            <div>So what do you think?</div>
+            <input placeholder="Did you enjoy learning UX Design?"/> 
+            <button>Submit</button>
+            <div>Want to get feedback from a pro?</div>
+            <div>Upload with premium!</div>
+            <button ng-click="ClassCtrl.tryPremium()">Try Premium</button>
         </div>
     </div>
 </div>
