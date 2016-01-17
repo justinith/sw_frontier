@@ -29,7 +29,8 @@
             createClass: createClass,
             getClassByCategoryId: getClassByCategoryId,
             setUserPrimaryClass: setUserPrimaryClass,
-            getCategoryById: getCategoryById
+            getCategoryById: getCategoryById,
+            uploadClassFile: uploadClassFile
         };
 
         function createClass(params) {
@@ -74,6 +75,16 @@
                         .save ()
                         .then (generateSuccessResponse, generateErrorResponse);
                 }, generateErrorResponse);
+        }
+
+        function uploadClassFile(file, classId, stepNumber){
+            return tableObject('ClassFiles')
+                .set('file',new Parse.File(file.name,file))
+                .set('classId', classId)
+                .set('stepNumber', stepNumber)
+                .save()
+                .then (generateSuccessResponse, generateErrorResponse);
+
         }
     }
 

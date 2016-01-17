@@ -69,6 +69,7 @@ gulp.task('clean', () => {
         .pipe(clean());
 });
 
+//gulp.task('clean-images')
 
 gulp.task('build', ['clean'], function () {
     //'build-auth', 'build-admin',
@@ -113,6 +114,7 @@ gulp.task('dev', ['dev-copy', 'dev-usemin', 'dev-scripts'], function () {
     gulp.start(['s']);
 
 });
+
 
 
 function BuildSubModules (folderTypeName) {

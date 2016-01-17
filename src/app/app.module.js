@@ -7,6 +7,7 @@
             'ngSanitize',
             'ngRoute',
         //'ngTable',
+            'ngFileUpload',
             'ui.bootstrap'
     ]);
 }());
