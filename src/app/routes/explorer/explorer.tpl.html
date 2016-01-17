@@ -1,6 +1,6 @@
  <style>
 
-    body {
+    .ng-scope {
         font-family:"Helvetica Neue";
         background-color:  rgb(84, 214, 207);
     }
@@ -67,7 +67,7 @@
     }
 
     .moreToCome {
-        color: white;
+        color: red;
     }
 
     .compLogos img {
@@ -81,7 +81,7 @@ ng-init="DashCtrl.url = 'https://www.youtube.com/embed/H1I4ObpzszE'">
         <h2 class="exploreTitle">WANT TO EXPLORE DESIGN?</h2>
         <div class="center center-text ">
             <div class="white-circle-icon">
-                <i class="fa fa-eye fa-4x"></i>     
+                <i class="fa fa-eye fa-4x"></i>
             </div>
         </div>
         <div class="center center-text">
@@ -95,9 +95,24 @@ ng-init="DashCtrl.url = 'https://www.youtube.com/embed/H1I4ObpzszE'">
                     <img src="http://www.userlogos.org/files/logos/siipikarja/google_white.png">
                     <img src="https://saucelabs.com/new-images/cust_img_eventbrite_logo2x.png">
                 </div>
+
             </div>
         </div>
     </div>
 
     <p class="center center-text moreToCome">More to come...</p>
+    <p class="center center-text">Digital Marketing, Web Development, Software Engineering</p>
+    <form class="center center-text" name="InterestsForm" ng-submit="ExplorerCtrl.sendInterests(ExplorerCtrl.interests)">
+        <div>
+            Other Professions?
+            <input 
+            placeholder="What other professions interest you?" type="text"
+            class="input" ng-model="ExplorerCtrl.interests" name="interests" ng-required="true" />
+        </div>
+        
+    </form>
+
 </div>
+
+
+

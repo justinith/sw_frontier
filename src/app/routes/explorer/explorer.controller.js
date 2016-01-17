@@ -61,6 +61,28 @@
             });
         }
 
+        vm.sendInterests = function (data) {
+            console.log(data);
+            var Interests = Parse.Object.extend("Interests");
+            var interests = new Interests();
+
+            interests.set("professions", data);
+            vm.interests = "";
+
+            interests.save(null, {
+              success: function(data) {
+                // Execute any logic that should take place after the object is saved.
+                console.log('New object created with objectId: ' + data.id);
+              },
+              error: function(data, error) {
+                // Execute any logic that should take place if the save fails.
+                // error is a Parse.Error with an error code and message.
+                console.log('Failed to create new object, with error code: ' + error.message);
+              }
+            });
+        }
+
+
     }
 
 } ());
