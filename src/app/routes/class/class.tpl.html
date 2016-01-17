@@ -151,8 +151,12 @@
 
         <div ng-if="ClassCtrl.selectedTab.index === ClassCtrl.steps.length - 1" ng-init="ClassCtrl.setDone()">
             <div>So what do you think?</div>
-            <input placeholder="Did you enjoy learning UX Design?"/> 
-            <button>Submit</button>
+            
+            <textarea placeholder="Did you enjoy learning UX Design?" 
+            ng-model="ClassCtrl.feedbackData"></textarea>
+            <button ng-click="ClassCtrl.submitFeedback()">Submit</button>
+
+
             <div>Want to get feedback from a pro?</div>
             <div>Upload with premium!</div>
 
