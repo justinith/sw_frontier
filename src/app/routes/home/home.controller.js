@@ -8,6 +8,7 @@
 
     function HomeCtrl($state) {
         var vm = this;
+        vm.toggle = true;
 
         vm.login = login;
         vm.signUp = signUp;
@@ -18,8 +19,6 @@
             console.log('Hello!');
 
         }
-
-
 
             function signUp(info){
                 console.log('signup', info);
