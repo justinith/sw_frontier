@@ -26,6 +26,7 @@
         vm.changeTask = changeTask;
         vm.nextStep = nextStep;
         vm.setDone = setDone;
+        vm.tryPremium = tryPremium;
 
         init ();
 
@@ -70,20 +71,15 @@
         }
 
         function nextStep() {
-            var currentIndex = vm.selectedTab.index;
             var nextIndex = vm.selectedTab.index + 1;
-            vm.steps[currentIndex].complete = true;
-            //if (!vm.steps.finished) {
-                completeTask().then(function(){
-                    console.log('Completed');
-                    vm.selectedTab = vm.steps[nextIndex];
-                    $scope.$digest();
-                });
-            //}
+            if (!vm.steps.finished) {
+                vm.selectedTab = vm.steps[nextIndex];
+            }
         }
 
         function upload(file, currentStep) {
             vm.uploading = true;
+            console.log ({a: vm.selectedTab});
             Api.uploadClassFile (file, vm.class.id, vm.selectedTab.index).then (completeTask, function (err) {
                 console.log ('error', err);
                 vm.uploading = false;
@@ -100,25 +96,24 @@
         }
 
         function completeTask() {
-            return Api.getClassByCategoryId (selectedCategory).then (function (classObj) {
-                //var index = vm.selectedTab.index;
-                //var steps = angular.copy (classObj.attributes.steps);
-                //steps[index].complete = true;
-                //if (!steps[index + 1]) {
-                //    classObj.set ('finished', true);
-                //}
-                classObj.set ('steps', vm.steps);
-                return classObj.save ();
+            Api.getClassByCategoryId (selectedCategory).then (function (classObj) {
+                var index = vm.selectedTab.index;
+                var steps = angular.copy (classObj.attributes.steps);
+                steps[index].complete = true;
+                if (!steps[index + 1]) {
+                    classObj.set ('finished', true);
+                }
+                classObj.set ('steps', steps);
+                classObj.save ();
 
+                vm.class = classObj;
+                vm.steps = classObj.attributes.steps;
+                vm.selectedTab = vm.steps[index];
 
-                //vm.class = classObj;
-                //vm.steps = classObj.attributes.steps;
-                //vm.selectedTab = vm.steps[index];
-                //
-                //vm.uploading = false;
+                vm.uploading = false;
             }, function () {
-                return;
-                //vm.uploading = false;
+
+                vm.uploading = false;
             })
         }
 
@@ -141,12 +136,12 @@
                         error: function(data, error){
                             console.log("failed");
                         }
-                    })
+                    });
                 }
                 else if (premium === false) {
                     console.log("they've completed it already, don't do anything");
                 }
-                else if (premium == true ) {
+                else if (premium === true ) {
                     console.log("don't do anything either");
                 }
 
@@ -160,7 +155,17 @@
 
         function tryPremium() {
             //set premium to true
-            //should show upload
+            console.log("try Premium")
+            var obj = Parse.User.current();
+            obj.set("premium", true);
+            obj.save(null, {
+                success: function(data) {
+                    console.log("updated to true" );
+                },
+                error: function(data, error){
+                    console.log("failed");
+                }
+            });
         }
     }
 } ());
