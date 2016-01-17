@@ -255,27 +255,6 @@
 
     angular
         .module ('app.routes')
-        .controller ('DashCtrl', DashCtrl);
-
-
-    function DashCtrl() {
-
-        var vm = this;
-
-        init ();
-
-        function init() {
-
-        }
-
-    }
-
-} ());
-(function () {
-    'use strict';
-
-    angular
-        .module ('app.routes')
         .controller ('ClassCtrl', ClassCtrl);
 
 
@@ -467,10 +446,10 @@
 
     angular
         .module ('app.routes')
-        .controller ('FeedbackCtrl', FeedbackCtrl);
+        .controller ('DashCtrl', DashCtrl);
 
 
-    function FeedbackCtrl() {
+    function DashCtrl() {
 
         var vm = this;
 
@@ -479,53 +458,6 @@
         function init() {
 
         }
-
-    }
-
-} ());
-(function () {
-    'use strict';
-
-    angular
-        .module ('app.routes')
-        .controller ('HomeCtrl', HomeCtrl);
-
-
-    function HomeCtrl($state) {
-        var vm = this;
-        vm.toggle = true;
-
-        vm.login = login;
-        vm.signUp = signUp;
-
-        init ();
-
-        function init() {
-            
-
-        }
-
-            function signUp(info){
-                
-                Parse.User.signUp(info.email, info.password).then(function(res){
-                    
-                    $state.go('app.explorer');
-                }, function(err){
-                    
-                });
-
-            }
-            function login(info){
-                Parse.User.logIn(info.email, info.password).then(function(res){
-                    $state.go('app.explorer');
-                    
-                }, function(err){
-                    
-                });
-                
-            }
-
-
 
     }
 
@@ -616,6 +548,74 @@
         vm.selectByIcon = function() {
             selectClass(vm.list[0]);
         }
+
+
+    }
+
+} ());
+(function () {
+    'use strict';
+
+    angular
+        .module ('app.routes')
+        .controller ('FeedbackCtrl', FeedbackCtrl);
+
+
+    function FeedbackCtrl() {
+
+        var vm = this;
+
+        init ();
+
+        function init() {
+
+        }
+
+    }
+
+} ());
+(function () {
+    'use strict';
+
+    angular
+        .module ('app.routes')
+        .controller ('HomeCtrl', HomeCtrl);
+
+
+    function HomeCtrl($state) {
+        var vm = this;
+        vm.toggle = true;
+
+        vm.login = login;
+        vm.signUp = signUp;
+
+        init ();
+
+        function init() {
+            
+
+        }
+
+            function signUp(info){
+                
+                Parse.User.signUp(info.email, info.password).then(function(res){
+                    
+                    $state.go('app.explorer');
+                }, function(err){
+                    
+                });
+
+            }
+            function login(info){
+                Parse.User.logIn(info.email, info.password).then(function(res){
+                    $state.go('app.explorer');
+                    
+                }, function(err){
+                    
+                });
+                
+            }
+
 
 
     }
