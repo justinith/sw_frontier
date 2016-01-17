@@ -137,13 +137,6 @@
         <div ng-if="ClassCtrl.selectedTab.index !== ClassCtrl.steps.length - 1">
 
             <!--HERE ===== -->
-        <button ng-if="!ClassCtrl.selectedTab.complete"
-                ng-disabled="ClassCtrl.uploading"
-                type="file" class="uploadButton" ngf-select="ClassCtrl.upload($file)" ngf-max-size="10MB"
-                ngf-multiple="true">
-            <span ng-show="ClassCtrl.uploading"><i class="fa fa-spinner fa-pulse"></i> Uploading</span>
-            <span ng-show="!ClassCtrl.uploading">UPLOAD</span>
-        </button>
             <!--TO HERE ===== -->
         <!--<button ng-if="ClassCtrl.selectedTab.complete"-->
                 <!--ng-click="ClassCtrl.nextStep()"-->
@@ -162,7 +155,15 @@
             <button>Submit</button>
             <div>Want to get feedback from a pro?</div>
             <div>Upload with premium!</div>
-            <button ng-click="ClassCtrl.tryPremium()">Try Premium</button>
+
+            <button ng-disabled="ClassCtrl.uploading"
+                    ng-click="ClassCtrl.tryPremium()"
+                    type="file" class="uploadButton" ngf-select="ClassCtrl.upload($file)" ngf-max-size="10MB"
+                    ngf-multiple="true">
+                <span ng-show="ClassCtrl.uploading"><i class="fa fa-spinner fa-pulse"></i> Uploading</span>
+                <span ng-show="!ClassCtrl.uploading">Try Premium</span>
+            </button>
+            <!--<button ng-click="ClassCtrl.tryPremium()">Try Premium</button>-->
         </div>
     </div>
 </div>
