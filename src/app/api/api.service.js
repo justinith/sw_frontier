@@ -28,8 +28,8 @@
         return {
             createClass: createClass,
             getClassByCategoryId: getClassByCategoryId,
-            setUserPrimaryClass: setUserPrimaryClass
-
+            setUserPrimaryClass: setUserPrimaryClass,
+            getCategoryById: getCategoryById
         };
 
         function createClass(params) {
@@ -46,16 +46,19 @@
                 .then (generateSuccessResponse, generateErrorResponse);
         }
 
+        function getCategoryById(categoryId){
+            return queryTable('Category')
+                .equalTo('id', categoryId)
+                .first()
+                .then(generateSuccessResponse, generateErrorResponse);
+        }
         function getClassByCategoryId(categoryId) {
             var currentUser = Parse.User.current ();
             return queryTable ('UserClasses')
                 .equalTo ('userId', currentUser.id)
                 .equalTo ('categoryId', categoryId)
-                .find ()
+                .first ()
                 .then (function (res) {
-                    if (res.length === 0) {
-                        return $q.reject ('0 Results');
-                    }
                     return generateSuccessResponse (res);
                 }, generateErrorResponse);
         }

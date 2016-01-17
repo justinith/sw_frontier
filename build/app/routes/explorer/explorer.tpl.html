@@ -1,0 +1,38 @@
+ <style>
+    .ng-scope {
+        font-family:"Avenir Black";
+        background-color: yellow;
+    }
+
+    .exploreTitleContainer{ 
+        margin-top: 20px;
+    }
+    .exploreTitle{
+        text-align: center;
+        margin-top: 0;
+        margin-bottom: 0;
+        color: white;
+    }
+    
+</style>
+<div class="explorer page-container"
+ng-init="DashCtrl.url = 'https://www.youtube.com/embed/H1I4ObpzszE'">
+    <div class="exploreTitleContainer">
+        <h2 class="exploreTitle">PICK THE PROFESSION THAT</h2>
+        <h2 class="exploreTitle">BEST INTERESTS YOU!</h2>
+        <div class="row">
+            <i class="fa fa-camera-retro fa-5x"></i> 
+            <i class="fa fa-camera-retro fa-5x"></i> 
+        </div>
+        <div class="row">
+            
+            <div class="col-sm-3" ng-repeat="category in DashCtrl.list">
+                <button class="btn btn-primary" ng-click="DashCtrl.selectClass(category)">
+                    {{category.attributes.name}}
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <p>More to come...</p>
+</div>

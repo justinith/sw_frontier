@@ -1,0 +1,46 @@
+<style>
+    .home{
+        display: flex;
+
+    }
+</style>
+<div class="home page-container">
+
+
+    <div class="login panel">
+        <h3>Login</h3>
+        <form class="panel-default" name="LoginForm" ng-submit="LoginForm.$valid && HomeCtrl.login(HomeCtrl.login)">
+            <div>
+            <label>Username</label>
+                <br/>
+                <input type="text" ng-model="HomeCtrl.login.email" name="email" placeholder="example@email.com" ng-required="true"/>
+            </div>
+            <div>
+            <label>Password</label>
+                <br/>
+                <input type="password" ng-model="HomeCtrl.login.password" name="password" ng-required="true"/>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <div class="signup">
+        <h3>Signup</h3>
+        <form name="SignupForm" ng-submit="SignupForm.$valid && HomeCtrl.signUp(HomeCtrl.signup)">
+            <!--<pre>{{SignupForm | json}}</pre>-->
+            <div>
+                <label>Email</label><br />
+                <input type="email" ng-model="HomeCtrl.signup.email" name="email" ng-required="true" />
+            </div>
+            <div>
+                <label>Password</label><br />
+                <input type="password" ng-model="HomeCtrl.signup.password" name="password" ng-required="true" />
+            </div>
+            <button type="submit">Sign Up</button>
+        </form>
+    </div>
+
+
+
+
+</div>

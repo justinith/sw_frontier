@@ -31,8 +31,8 @@ var
 
 gulp.task('s', () => {
     connect.server({
-        port: 9000,
-        root: 'dev',
+        port: 9001,
+        root: 'build/',
         host: '127.0.0.1'
     })
 });
@@ -50,13 +50,13 @@ gulp.task('build-scripts', function () {
         .pipe(gulp.dest('build/bower_components/'));
 });
 
-
-gulp.task('build-auth', () => {
-    BuildSubModules('auth');
-});
-gulp.task('build-admin', () => {
-    BuildSubModules('admin');
-});
+//
+//gulp.task('build-auth', () => {
+//    BuildSubModules('auth');
+//});
+//gulp.task('build-admin', () => {
+//    BuildSubModules('admin');
+//});
 
 gulp.task('build-copy', () => {
     copy([`${dir.src.stat}/assets/fonts/**/*`], `${dir.build.stat}/assets/fonts/`);
@@ -71,7 +71,8 @@ gulp.task('clean', () => {
 
 
 gulp.task('build', ['clean'], function () {
-    return gulp.start(['build-auth', 'build-admin', 'build-vendor', 'build-scripts', 'build-copy']);
+    //'build-auth', 'build-admin',
+    return gulp.start(['build-vendor', 'build-scripts', 'build-copy']);
 });
 
 
