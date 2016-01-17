@@ -6,12 +6,13 @@
         .controller ('DashCtrl', DashCtrl);
 
 
-    function DashCtrl($scope, $q) {
-
+    function DashCtrl($scope, $state, Api) {
         var vm = this;
-        var currentUser = Parse.User.current();
+        var currentUser = Parse.User.current ();
 
-        console.log(currentUser);
+        //console.log(currentUser.fetch());
+        //console.log({a:Parse.User});
+        //console.log({a:currentUser});
         vm.list = [];
         vm.description = 'Welcome to Frontier';
 
@@ -19,45 +20,45 @@
         init ();
 
         function init() {
-            getCategories();
+            getCategories ();
         }
 
-        function getCategories(){
-            var Category = Parse.Object.extend('Category');
-            var query = new Parse.Query(Category);
-            query.find().then(function(success){
-                console.log(success[0].attributes);
+        function getCategories() {
+            var Category = Parse.Object.extend ('Category');
+            var query = new Parse.Query (Category);
+            query.find ().then (function (success) {
                 vm.list = success;
-                $scope.$digest();
-                console.log('query success', success);
-            }, function(err){
-                alert('Error loading Categories');
-                console.log('query err', err);
+                $scope.$digest ();
+            }, function (err) {
+                alert ('Error loading Categories');
             });
         }
 
 
-        function selectClass(category){
-            console.log(category);
-            getCategoryById(category.id)
-                .then(function(res){
-                    console.log('select class err', res);
-                }, function(){
-                    console.log('select class err', err);
-                });
-                //.catch(function(err){
-                //    console.log('error', err)
-                //});
+        function selectClass(category) {
+            Api.getClassByCategoryId (category.id)
+                .then (
+                    viewClass,
+                    function (err) {
+                        createClass (category)
+                            .then (function () {
+                                viewClass (category.attribute);
+                            });
+                    });
         }
 
-        function getCategoryById(id){
-            var Category = Parse.Object.extend('UserClasses');
-            var query = new Parse.Query(Category);
+        function viewClass(category) {
+            $state.go ('app.class', {id: category.id});
+        }
 
-            query.equalTo('userId', currentUser.id);
-            query.equalTo('categoryId', id);
-
-            return query.find();
+        function createClass(category) {
+            return Api.createClass ({
+                categoryId: category.id,
+                steps: category.attributes.steps.map (function (obj) {
+                    obj.complete = false;
+                    return obj;
+                })
+            });
         }
 
     }

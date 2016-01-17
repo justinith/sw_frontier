@@ -57,7 +57,7 @@
 
             // View Class
             .state('app.class', {
-                url: 'class?id',
+                url: 'class/:id',
                 templateUrl: base.routes + 'class/class.tpl.html',
                 controller: 'ClassCtrl as ClassCtrl'
             })

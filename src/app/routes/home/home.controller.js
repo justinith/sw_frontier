@@ -7,7 +7,6 @@
 
 
     function HomeCtrl($state) {
-        console.log(Parse);
         var vm = this;
 
         vm.login = login;
@@ -36,11 +35,12 @@
                     $state.go('app.dash');
                     console.log('login success', res);
                 }, function(err){
-                    alert('Login Failed');
                     console.log('login error', err);
                 });
                 console.log(login);
             }
+
+
 
     }
 
