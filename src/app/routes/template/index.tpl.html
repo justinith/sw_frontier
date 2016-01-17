@@ -21,9 +21,17 @@
         color: rgb(84, 214, 207);
     }
 
-    .blueLogo {
+    .coreLogo {
         height: 50px;
         margin-left: 20px;
+    }
+
+    #blueLogo {
+        display: block;
+    }
+    
+    #whiteLogo {
+        display: none;
     }
 
     @media (min-width: 768px) {
@@ -54,7 +62,8 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="#">
-                <img class="blueLogo" src="assets/images/logo_turqoise.png">
+                <img id="blueLogo" class="coreLogo" src="assets/images/logo_turqoise.png">
+                <img id="whiteLogo" class="coreLogo" src="assets/images/logo_white.png">
             </a>
         </div>
 
@@ -82,6 +91,6 @@
     </div>
 </nav>
 
-<div class="container-fluid">
+<div class="">
     <div ui-view></div>
 </div>
