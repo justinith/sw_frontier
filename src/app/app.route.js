@@ -31,10 +31,10 @@
                 controller: 'HomeCtrl as HomeCtrl'
             //
             })
-            .state('app.dash', {
-                url: 'dash',
-                templateUrl: base.routes + 'dash/dash.tpl.html',
-                controller: 'DashCtrl as DashCtrl'
+            .state('app.explorer', {
+                url: 'explorer',
+                templateUrl: base.routes + 'explorer/explorer.tpl.html',
+                controller: 'ExplorerCtrl as ExplorerCtrl'
             })
             // logout
             .state('app.logout', {

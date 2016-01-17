@@ -3,10 +3,10 @@
 
     angular
         .module ('app.routes')
-        .controller ('DashCtrl', DashCtrl);
+        .controller ('ExplorerCtrl', ExplorerCtrl);
 
 
-    function DashCtrl($scope, $state, Api) {
+    function ExplorerCtrl($scope, $state, Api) {
         var vm = this;
         var currentUser = Parse.User.current ();
 

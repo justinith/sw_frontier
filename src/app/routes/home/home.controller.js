@@ -32,7 +32,7 @@
             }
             function login(info){
                 Parse.User.logIn(info.email, info.password).then(function(res){
-                    $state.go('app.dash');
+                    $state.go('app.explorer');
                     console.log('login success', res);
                 }, function(err){
                     console.log('login error', err);
