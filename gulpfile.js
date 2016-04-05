@@ -59,7 +59,7 @@ gulp.task('build-scripts', function () {
 //});
 
 gulp.task('build-copy', () => {
-    copy([`${dir.src.stat}/assets/fonts/**/*`], `${dir.build.stat}/assets/fonts/`);
+    copy([`${dir.src.stat}/assets/**/*`], `${dir.build.stat}/assets/`);
     copy([`${dir.src.root}/favicon.ico`], `${dir.build.stat}/`);
     copy([`${dir.src.root}**/*.tpl.html`], dir.build.root);
 });
